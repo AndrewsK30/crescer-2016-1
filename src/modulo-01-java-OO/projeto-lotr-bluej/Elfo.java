@@ -9,8 +9,16 @@ public class Elfo {
      //Exercício 3-E a resposta para tudo é...
     public Elfo(String nome){
        this.nome = nome;
+    }   
+    public String getNome(){
+       return nome;
     }
-    
+    public int getFlechas(){
+       return flechas;
+    }
+    public String toString(){
+       return this.nome+" possui "+ this.flechas + " flechas e " + this.experiencia + " níveis de experiência.";
+    }
     public void atirarFlecha(Dwarf dwarf) {
         this.experiencia++;
         this.flechas--;
