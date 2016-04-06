@@ -15,7 +15,7 @@ public class CestoDeLembasTest
      @Test
     public void criarCestoCom4Lembas(){
         CestoDeLembas cesto = new CestoDeLembas(4);
-        boolean esperado = false;
+        boolean esperado = true;
         boolean obtido = cesto.podeDividirEmPares();
         assertEquals(esperado,obtido);
     }
