@@ -11,9 +11,9 @@ public class Elfo {
        this.nome = nome;
     }
     
-    public void atirarFlecha(Dwarf Obj) {
-        Obj.vida-=10;
-        experiencia++;
-        flechas--;
+    public void atirarFlecha(Dwarf dwarf) {
+        this.experiencia++;
+        this.flechas--;
+        dwarf.perderVida();
     }
 }
