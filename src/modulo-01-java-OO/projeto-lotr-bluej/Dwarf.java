@@ -14,4 +14,7 @@ public class Dwarf {
    public String getNome(){
        return nome;
    }
+   public int getVida(){
+       return vida;
+    }
  }
