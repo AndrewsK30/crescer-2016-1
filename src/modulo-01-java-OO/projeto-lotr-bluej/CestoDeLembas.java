@@ -4,9 +4,9 @@ public class CestoDeLembas{
         this.quantidadeLemdas=quantidadeLemdas;    
     }
     public boolean podeDividirEmPares() {
-        if(quantidadeLemdas>=1 && quantidadeLemdas<=100 && (Elfo.numElfos*2)>=quantidadeLemdas && quantidadeLemdas%2==0 && Elfo.numElfos!=0){
-           return true; 
-        }
-        return false;
+        //Verificação de paes, de modo que seja dividido em pares
+        return quantidadeLemdas>=1 && quantidadeLemdas<=100 && quantidadeLemdas%2==0 && quantidadeLemdas>2 ;
+        //"terneiro"
+        //return podeDividir ? true:false;
     }
 }
