@@ -7,9 +7,13 @@ public class Dwarf {
         this.nome = nome; 
    }         
    public void perderVida(){
-       this.vida-=10;
-       if(vida==0)
-        this.status=Status.MORTO;    
+       int vidaAposFlechada= this.vida - 10;
+       if(vida == 0){
+           status = Status.MORTO;
+       }       
+       if (vida > 0){
+           vida = vidaAposFlechada;
+       }
    }
    public void setName(String nome){
         this.nome = nome;  
