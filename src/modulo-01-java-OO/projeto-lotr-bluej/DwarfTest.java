@@ -28,11 +28,38 @@ public class DwarfTest
     }
       @Test
     public void DwarfMorreu(){
-        Dwarf dwarf=new Dwarf("Batman");
-        while(dwarf.getVida() != 0){
-            dwarf.perderVida();
-        }        
+        Dwarf dwarf = new Dwarf("Batman");
+        dwarf.perderVida();
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida();      
         assertEquals(Status.MORTO,dwarf.getStatus());
+    }
+       @Test
+    public void perdeuMaisDoQueDevia(){
+        Dwarf dwarf=new Dwarf("Robin");
+        dwarf.perderVida();
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        assertEquals(Status.MORTO,dwarf.getStatus());
+        assertEquals(0,dwarf.getVida());
     }
     
 }
