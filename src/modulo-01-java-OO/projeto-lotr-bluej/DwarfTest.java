@@ -21,4 +21,18 @@ public class DwarfTest
         dwarf.perderVida();
         assertEquals(100,dwarf.getVida());
     }
+     @Test
+    public void dwarfNasceVivo(){
+        Dwarf dwarf=new Dwarf("Balin");
+        assertEquals(Status.VIVO,dwarf.getStatus());
+    }
+      @Test
+    public void DwarfMorreu(){
+        Dwarf dwarf=new Dwarf("Batman");
+        while(dwarf.getVida() != 0){
+            dwarf.perderVida();
+        }        
+        assertEquals(Status.MORTO,dwarf.getStatus());
+    }
+    
 }
