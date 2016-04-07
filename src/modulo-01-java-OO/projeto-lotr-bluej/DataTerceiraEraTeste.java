@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public  class DataTerceiraEraTeste {
 	@Test
-	public void EsteAnoDeveSerBissexto(){
+	public void esteAnoDeveSerBissexto(){
 		DataTerceiraEra data = new DataTerceiraEra(12,5,2016);
 		assertEquals(true,data.ehBissexto());
 	}
@@ -17,17 +17,17 @@ public  class DataTerceiraEraTeste {
 		assertEquals(2016,data.getAno());
 	}
 	@Test
-	public void Ano2100DeveSerBissexto(){
+	public void ano2100DeveSerBissexto(){
 		DataTerceiraEra data = new DataTerceiraEra(12,5,2100);
 		assertEquals(false,data.ehBissexto());
 	}
 	@Test
-	public void Ano2002NaoDeveSerBissexto(){
+	public void ano2002NaoDeveSerBissexto(){
 		DataTerceiraEra data = new DataTerceiraEra(12,5,2002);
 		assertEquals(false,data.ehBissexto());
 	}
 	@Test
-	public void Ano416DeveSerBissexto(){
+	public void ano416DeveSerBissexto(){
 		DataTerceiraEra data = new DataTerceiraEra(12,5,416);
 		assertEquals(true,data.ehBissexto());
 	}

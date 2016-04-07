@@ -29,9 +29,12 @@ public class ElfoTest
     } 
     @Test
      public void ElfoAtiraFlechaGanhaExp(){
+         //arrange
         Elfo legolas=new Elfo("Legolas"); 
         Dwarf dwarf=new Dwarf("dwarf");
+        //act
         legolas.atirarFlecha(dwarf);
+        //assert
         assertEquals("Legolas possui 41 flechas e 1 nível de experiência.",legolas.toString()); 
     } 
      @Test
