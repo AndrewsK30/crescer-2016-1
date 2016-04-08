@@ -11,6 +11,10 @@ public class Item{
        return quantidade;
    }
    
+   public void plus1000(){
+       this.quantidade += 1000;
+   }
+   
    public String getDescricao(){
        return descricao;
    }
