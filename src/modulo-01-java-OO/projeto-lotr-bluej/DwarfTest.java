@@ -171,4 +171,63 @@ public class DwarfTest
         assertEquals(100, dwarf.getVida(), 0.0);
         assertEquals(0, dwarf.getExp());
     }
+    @Test
+    public void tenhoUmEscudoEAdagasPrint(){
+        Dwarf dwarf = new Dwarf("dwarf");
+        Item escudo = new Item(1, "Escudo");
+        Item adagas = new Item(3, "Adagas");
+        dwarf.adicionarItem(escudo);
+        dwarf.adicionarItem(adagas);
+        assertEquals("Escudo,Adagas", dwarf.getInventario().getDescricoesItens());
+    }
+    @Test
+    public void tireiSorte(){
+        DataTerceiraEra nasci = new DataTerceiraEra(1,4,2016);
+        Dwarf dwarf = new Dwarf("dwarf",nasci);
+        Item escudo = new Item(1, "Escudo");
+        Item adagas = new Item(3, "Adagas");
+        dwarf.adicionarItem(escudo);
+        dwarf.adicionarItem(adagas);
+        for(int i=0;i<5;i++){
+            dwarf.perderVida();            
+        }
+        dwarf.tentarSorte();
+        assertEquals(1001,dwarf.getInventario().getItens().get(0).getQuantidade());
+        assertEquals(1003,dwarf.getInventario().getItens().get(1).getQuantidade());
+    }
+    @Test
+    public void naoTireiSorte(){
+        DataTerceiraEra nasci = new DataTerceiraEra(1,4,2015);
+        Dwarf dwarf = new Dwarf("dwarf",nasci);
+        Item escudo = new Item(1, "Escudo");
+        Item adagas = new Item(3, "Adagas");
+        dwarf.adicionarItem(escudo);
+        dwarf.adicionarItem(adagas);
+        for(int i=0;i<5;i++){
+            dwarf.perderVida();            
+        }
+        dwarf.tentarSorte();
+        assertEquals(1,dwarf.getInventario().getItens().get(0).getQuantidade());
+        assertEquals(3,dwarf.getInventario().getItens().get(1).getQuantidade());
+    }
+    @Test
+    public void tenhoMaisAdagas(){
+        Dwarf dwarf = new Dwarf("dwarf");
+        Item escudo = new Item(1, "Escudo");
+        Item adagas = new Item(3, "Adagas");
+        dwarf.adicionarItem(escudo);
+        dwarf.adicionarItem(adagas);
+        assertEquals(adagas, dwarf.getInventario().retornaMaiorQuant());
+    }
+    @Test
+    public void soIqual(){
+        Dwarf dwarf = new Dwarf("dwarf");
+        Item escudo = new Item(1, "Escudo");
+        Item adagas = new Item(1, "Adagas");
+        Item peitoral = new Item(1, "Peitoral");
+        dwarf.adicionarItem(escudo);
+        dwarf.adicionarItem(adagas);
+        dwarf.adicionarItem(peitoral);
+        assertEquals("Peitoral", dwarf.getInventario().retornaMaiorQuant().getDescricao());
+    }
 }
