@@ -33,6 +33,14 @@ public class Dwarf {
       
    }
    
+   public void tentarSorte(){
+       if(this.getNumeroSorte() == -3333.0){
+           for(Item item : inventario.getItens()){
+               item.plus1000();
+           }           
+        }
+   }
+   
    public double getNumeroSorte(){
        double retorno = 101.0;
        if(dataNascimento.ehBissexto() && vida >= 80 && vida <= 90 ){
