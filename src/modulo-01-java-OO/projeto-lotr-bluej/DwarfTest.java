@@ -17,7 +17,8 @@ public class DwarfTest
     } 
     @Test
     public void perdeVida(){
-        Dwarf dwarf=new Dwarf("dwarf");
+        DataTerceiraEra meuAniversario = new DataTerceiraEra(1,2,2025);
+        Dwarf dwarf=new Dwarf("dwarf",meuAniversario);
         dwarf.perderVida();
         assertEquals(100,dwarf.getVida());
     }
@@ -27,7 +28,7 @@ public class DwarfTest
         assertEquals(Status.VIVO,dwarf.getStatus());
     }
       @Test
-    public void DwarfMorreu(){
+    public void TomeiFlechadaEMorri(){
         Dwarf dwarf = new Dwarf("Batman");
         dwarf.perderVida();
         dwarf.perderVida(); 
@@ -58,7 +59,36 @@ public class DwarfTest
         dwarf.perderVida(); 
         dwarf.perderVida(); 
         dwarf.perderVida(); 
+        dwarf.perderVida();
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+        dwarf.perderVida(); 
+
         assertEquals(Status.MORTO,dwarf.getStatus());
         assertEquals(0,dwarf.getVida());
-    }    
+    }  
+       @Test
+    public void recebiExpPorTomar3Flechada(){
+        DataTerceiraEra meuAniversario = new DataTerceiraEra(1,2,2016);
+        Dwarf dwarf=new Dwarf("dwarf",meuAniversario);
+        dwarf.perderVida();
+        dwarf.perderVida();
+        dwarf.perderVida();
+        assertEquals(2,dwarf.getExp());
+        assertEquals(90,dwarf.getVida());
+    }
+       @Test
+    public void godMod(){
+        DataTerceiraEra meuAniversario = new DataTerceiraEra(1,2,2015);
+        Dwarf dwarf=new Dwarf("Seixas",meuAniversario);
+        dwarf.perderVida();
+        dwarf.perderVida();
+        dwarf.perderVida();
+        dwarf.perderVida();
+        dwarf.perderVida();
+        dwarf.perderVida();
+        assertEquals(110,dwarf.getVida());
+        assertEquals(0,dwarf.getExp());
+    }
 }
