@@ -9,7 +9,7 @@ public class Inventario{
    public void removerItem(Item item){
        this.itens.remove(item);
    }
-   public ArrayList getInventario(){
+   public ArrayList getItens(){
     return itens;
    }
 }
