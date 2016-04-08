@@ -60,6 +60,5 @@ public class DwarfTest
         dwarf.perderVida(); 
         assertEquals(Status.MORTO,dwarf.getStatus());
         assertEquals(0,dwarf.getVida());
-    }
-    
+    }    
 }
