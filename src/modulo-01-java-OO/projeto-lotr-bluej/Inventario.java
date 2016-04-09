@@ -12,15 +12,10 @@ public class Inventario{
    }
    public String getDescricoesItens(){
     String retorno = "";
-    int tamanhoArray=itens.size();
-    for(int i=0;i<tamanhoArray;i++){
-        if(i==tamanhoArray-1){
-            retorno += itens.get(i).getDescricao();
-        }else{
-            retorno += itens.get(i).getDescricao()+",";
-        }        
+    for (Item item : this.itens) {
+       retorno += item.getDescricao() + ",";
     }
-    return retorno;
+    return !this.itens.isEmpty() ? retorno.substring(0, retorno.length() - 1) : retorno;
    } 
    public Item retornaMaiorQuant(){
        Item maiorReturn = null;
