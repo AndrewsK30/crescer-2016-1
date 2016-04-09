@@ -11,8 +11,8 @@ public class Item{
        return quantidade;
    }
    
-   public void plus1000(){
-       this.quantidade += 1000;
+   public void plusItens(int n){
+       this.quantidade += n;
    }
    
    public String getDescricao(){
