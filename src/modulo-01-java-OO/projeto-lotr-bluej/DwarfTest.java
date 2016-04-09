@@ -230,4 +230,17 @@ public class DwarfTest
         dwarf.adicionarItem(peitoral);
         assertEquals("Peitoral", dwarf.getInventario().retornaMaiorQuant().getDescricao());
     }
+    @Test
+    public void ordenandoItens(){
+        Dwarf dwarf = new Dwarf("dwarf");
+        Item escudo = new Item(3, "Escudo");
+        Item adagas = new Item(5, "Adagas");
+        Item peitoral = new Item(1, "Peitoral");
+        dwarf.adicionarItem(escudo);
+        dwarf.adicionarItem(adagas);
+        dwarf.adicionarItem(peitoral);
+        assertEquals("Escudo,Adagas,Peitoral", dwarf.getInventario().getDescricoesItens());
+        dwarf.getInventario().ordenarItens();
+        assertEquals("Peitoral,Escudo,Adagas", dwarf.getInventario().getDescricoesItens());
+    }
 }
