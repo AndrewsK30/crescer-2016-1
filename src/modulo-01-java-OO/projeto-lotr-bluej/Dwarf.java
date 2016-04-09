@@ -36,7 +36,7 @@ public class Dwarf {
    public void tentarSorte(){
        if(this.getNumeroSorte() == -3333.0){
            for(Item item : inventario.getItens()){
-               item.plus1000();
+               item.plusItens(1000);
            }           
         }
    }
