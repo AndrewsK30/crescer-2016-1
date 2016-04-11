@@ -12,4 +12,18 @@ public class HobbitContador{
       }
       return res;
   }
-}
+  /*1-Uso desnecessário de arrayList--->subtitui por um int.
+   * 2-Uso de for com inicio em 1--->uso do i= ao numero para melhor uso do for.
+   * 3-Uso de break e atribuição a variavel maiorMutiplo.
+   */
+  public int obterMaiorMultiploDeTresAte(int numero) {
+      int maiorMultiplo=0;    
+      for (int i = numero; i >= 0; i--) {
+          if (i % 3 == 0) {
+              maiorMultiplo=i;
+              break;
+          }
+      }    
+      return maiorMultiplo;
+    }
+  }
