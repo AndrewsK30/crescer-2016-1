@@ -1,21 +1,21 @@
-public class Elfo {
-    private String nome;
-    private int experiencia=0, flechas = 42;
+public class Elfo extends Raca{
+    private int flechas = 42;
+    private int vida = 100;
+    
     public Elfo(String nome, int flechas){
         // inicializa variáveis de instância
-       this.nome = nome;
+       super(nome);
        this.flechas=flechas;
     }    
      //Exercício 3-E a resposta para tudo é...
     public Elfo(String nome){
-       this.nome = nome;
+       super(nome);
     }   
-    public String getNome(){
-       return nome;
-    }
+    
     public int getFlechas(){
        return flechas;
     }
+    
     public String toString(){
        boolean flechaNoSingular = Math.abs(this.flechas) == 1;
        boolean experienciaNoSingular = Math.abs(this.experiencia) == 1;
@@ -27,6 +27,7 @@ public class Elfo {
        this.experiencia,
        experienciaNoSingular ? "nível" : "níveis");
     }
+    
     public void atirarFlecha(Dwarf dwarf) {
         this.experiencia++;
         this.flechas--;
