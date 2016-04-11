@@ -25,5 +25,12 @@ public class HobbitContador{
           }
       }    
       return maiorMultiplo;
-    }
   }
+  public ArrayList<Integer> obterMultiplosDeTresAte(int numero) {
+      ArrayList<Integer> multiplos = new ArrayList<>(Arrays.asList(0));    
+      for (int i = 1; i <= numero; i++) {
+          if (i % 3 == 0) multiplos.add(i);          
+      }    
+      return multiplos;
+    }
+}
