@@ -11,9 +11,12 @@ public class ElfoVerde extends Elfo{
     }
     
     public void adicionarItem(Item item){
-       if(item.getDescricao()=="Espada de Aço valiriano" ||
-          item.getDescricao()=="Arco e Flecha de Vidro")
-          inventario.adicionarItem(item);
+        String nome = item.getDescricao() ;
+        
+       if(item != null &&
+          nome=="Espada de Aço valiriano" ||
+          nome=="Arco e Flecha de Vidro") 
+          super.adicionarItem(item);
     }
     
     public void atirarFlecha(Dwarf dwarf) {
