@@ -1,9 +1,10 @@
 public class Elfo extends Raca{
     protected int flechas = 42;  
-    
+    protected static int contador=0;
     public Elfo(String nome){
        super(nome);
        this.vida=100;
+       this.contador++;
     }   
     public Elfo(String nome, int flechas){
         // inicializa variáveis de instância

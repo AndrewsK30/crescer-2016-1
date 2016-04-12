@@ -38,11 +38,19 @@ public class ElfoTest
         assertEquals("Legolas possui 41 flechas e 1 nível de experiência.",legolas.toString()); 
     } 
      @Test
-     public void ElfoAtiraFlechaResta1Flecha(){
+    public void ElfoAtiraFlechaResta1Flecha(){
         Elfo legolas=new Elfo("Legolas",3); 
         Dwarf dwarf=new Dwarf("dwarf");
         legolas.atirarFlecha(dwarf);
         legolas.atirarFlecha(dwarf);
         assertEquals("Legolas possui 1 flecha e 2 níveis de experiência.",legolas.toString()); 
     } 
+    @Test  
+    public void adicionado2Elfos(){ 
+        int quantosElfosAteAgora = Elfo.contador;
+        Elfo legolas=new Elfo("Legolas",3); 
+        Elfo legolas2=new Elfo("Legolas",3); 
+        assertEquals(quantosElfosAteAgora +2, Elfo.contador); 
+    } 
+    
 }

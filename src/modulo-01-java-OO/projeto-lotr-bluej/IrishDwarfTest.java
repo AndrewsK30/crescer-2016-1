@@ -6,7 +6,7 @@ import org.junit.Test;
 public class IrishDwarfTest
 {
   @Test
-  public void tiveSorte(){     
+  public void tiveSorte(){
         DataTerceiraEra nasci = new DataTerceiraEra(1,4,2016);
         Dwarf dwarf = new IrishDwarf("dwarf",nasci);
         Item escudo = new Item(1, "Escudo");
