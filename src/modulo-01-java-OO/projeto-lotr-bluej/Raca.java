@@ -1,9 +1,9 @@
-public class Raca{
+public  class Raca{
    protected String nome;   
    protected Status status = Status.VIVO;
    protected int experiencia=0;   
    protected Inventario inventario = new Inventario();
-   
+   protected double vida;
    
    public Raca(String nome){   
         this.nome = nome;  
@@ -31,5 +31,9 @@ public class Raca{
    
     public int getExp(){
        return experiencia;
+   }
+   
+   public double getVida() {
+       return this.vida;
    }
 }
