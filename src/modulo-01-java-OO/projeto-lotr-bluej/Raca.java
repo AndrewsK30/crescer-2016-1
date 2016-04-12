@@ -1,9 +1,10 @@
 public class Raca{
-   protected String nome;
-   protected int vida;
+   protected String nome;   
+   protected Status status = Status.VIVO;
    protected int experiencia=0;   
    protected Inventario inventario = new Inventario();
- 
+   
+   
    public Raca(String nome){   
         this.nome = nome;  
    }
@@ -23,9 +24,12 @@ public class Raca{
    public Inventario getInventario(){
        return inventario;
    }
+         
+   public Status getStatus(){
+       return status;
+   }  
    
-      
-   public int getVida(){
-       return vida;
+    public int getExp(){
+       return experiencia;
    }
 }
