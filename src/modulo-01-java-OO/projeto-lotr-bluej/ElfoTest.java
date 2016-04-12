@@ -10,7 +10,7 @@ public class ElfoTest
         Elfo legolas=new Elfo("Legolas",32);
         Dwarf dwarf=new Dwarf("dwarf");
         legolas.atirarFlecha(dwarf);
-        assertEquals(100,dwarf.getVida());        
+        assertEquals(100,dwarf.getVida(),0.0);        
     }
     @Test
     public void verificaFlechas(){
