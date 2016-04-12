@@ -1,16 +1,14 @@
 import java.util.*;
-public class Dwarf extends Raca{
-   private Status status = Status.VIVO;
+public class Dwarf extends Raca{   
    private DataTerceiraEra dataNascimento = new DataTerceiraEra(1,1,1);
-   private int vida = 110;
-   
+   protected int vida=110;  
    public Dwarf(String nome){   
-        super(nome);  
+        super(nome);       
    } 
     
    public Dwarf(String nome, DataTerceiraEra dataNascimento){   
         super(nome);
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento = dataNascimento;        
    }   
    
    public void tentarSorte(){
@@ -48,16 +46,13 @@ public class Dwarf extends Raca{
        }
           
           
+   }      
+    
+   public int getVida(){
+       return vida;
    }
-   
-   public Status getStatus(){
-       return status;
-   } 
    
    public DataTerceiraEra getDataNascimento(){
        return dataNascimento;
-   }
-   public int getExp(){
-       return experiencia;
-   }
+   }  
  }
