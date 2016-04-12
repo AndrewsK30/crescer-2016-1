@@ -1,13 +1,13 @@
 import java.util.*;
 public class Dwarf extends Raca{   
-   private DataTerceiraEra dataNascimento = new DataTerceiraEra(1,1,1);
-   protected int vida=110;  
+   private DataTerceiraEra dataNascimento = new DataTerceiraEra(1,1,1); 
    public Dwarf(String nome){   
-        super(nome);       
+        super(nome);     
+        this.vida = 110;
    } 
     
    public Dwarf(String nome, DataTerceiraEra dataNascimento){   
-        super(nome);
+        this(nome);
         this.dataNascimento = dataNascimento;        
    }   
    
@@ -36,7 +36,7 @@ public class Dwarf extends Raca{
        if(numeroSorte < 0){
           experiencia += 2;
        }else if(numeroSorte > 100){
-          int vidaAposFlechada= this.vida - 10;
+          double vidaAposFlechada= this.vida - 10;
           if(vida == 0){
              status = Status.MORTO;
           }       
@@ -46,11 +46,7 @@ public class Dwarf extends Raca{
        }
           
           
-   }      
-    
-   public int getVida(){
-       return vida;
-   }
+   }     
    
    public DataTerceiraEra getDataNascimento(){
        return dataNascimento;

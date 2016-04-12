@@ -3,12 +3,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class DwarfTest
 {
+    private final double DELTA = 0.0;
     @Test
     public void verificaVida(){
         Dwarf dwarf=new Dwarf("dwarf");
-        assertEquals(110,dwarf.getVida());
+        assertEquals(110,dwarf.getVida(),DELTA);
     } 
     @Test
     public void verificaNome(){
@@ -20,7 +22,7 @@ public class DwarfTest
         DataTerceiraEra meuAniversario = new DataTerceiraEra(1,2,2025);
         Dwarf dwarf=new Dwarf("dwarf",meuAniversario);
         dwarf.perderVida();
-        assertEquals(100,dwarf.getVida());
+        assertEquals(100,dwarf.getVida(),DELTA);
     }
     @Test
     public void dwarfNasceVivo(){
@@ -66,7 +68,7 @@ public class DwarfTest
         dwarf.perderVida(); 
 
         assertEquals(Status.MORTO,dwarf.getStatus());
-        assertEquals(0,dwarf.getVida());
+        assertEquals(0,dwarf.getVida(),DELTA);
     }  
     @Test
     public void recebiExpPorTomar3Flechada(){
@@ -76,7 +78,7 @@ public class DwarfTest
         dwarf.perderVida();
         dwarf.perderVida();
         assertEquals(2,dwarf.getExp());
-        assertEquals(90,dwarf.getVida());
+        assertEquals(90,dwarf.getVida(),DELTA);
     }
     @Test
     public void godMod(){
@@ -88,7 +90,7 @@ public class DwarfTest
         dwarf.perderVida();
         dwarf.perderVida();
         dwarf.perderVida();
-        assertEquals(110,dwarf.getVida());
+        assertEquals(110,dwarf.getVida(),DELTA);
         assertEquals(0,dwarf.getExp());
     }
     @Test
@@ -162,13 +164,13 @@ public class DwarfTest
         dwarf.perderVida();
         dwarf.perderVida();
         assertEquals(2, dwarf.getExp());
-        assertEquals(90, dwarf.getVida(), 0.0);   
+        assertEquals(90, dwarf.getVida(), DELTA);   
     }
     @Test
     public void dwarfSoFlechada(){
         Dwarf dwarf = new Dwarf("dwarf");
         dwarf.perderVida();
-        assertEquals(100, dwarf.getVida(), 0.0);
+        assertEquals(100, dwarf.getVida(), DELTA);
         assertEquals(0, dwarf.getExp());
     }
     @Test
