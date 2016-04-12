@@ -14,12 +14,12 @@ public class ElfoNoturno extends Elfo{
     public void atirarFlecha(Dwarf dwarf) {
         this.experiencia+=3;
         this.flechas--;
-        this.perdeVida();
+        this.perdeVidaFlechada();
         dwarf.perderVida();
     }
     
-    private void perdeVida(){
-        this.vida -= 5;
-        if(this.vida<=0) this.status=Status.MORTO;
+    private void perdeVidaFlechada(){
+        this.vida -= vida*0.05;
+        if(this.vida<1) this.status=Status.MORTO;
     }
 }

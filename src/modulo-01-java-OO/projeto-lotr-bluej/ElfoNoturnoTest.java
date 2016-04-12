@@ -8,11 +8,13 @@ public class ElfoNoturnoTest
    @Test
    public void atirou22FlechadasEMoreu(){
         Elfo legolas = new ElfoNoturno("Legolas",32);
-        Dwarf dwarf = new Dwarf("dwarf");        
-        for(int i=0;i <20;i++){
-        legolas.atirarFlecha(dwarf);
+        Dwarf dwarf = new Dwarf("dwarf");
+        int i=0;        
+        while(legolas.getVida()>=1){
+            legolas.atirarFlecha(dwarf);
+            i++;
         }
-        assertEquals(Status.MORTO,legolas.getStatus());
+        assertEquals(45,i);      
         assertEquals(0,legolas.getVida());        
    }   
 }
