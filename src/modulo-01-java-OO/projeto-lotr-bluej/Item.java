@@ -18,4 +18,12 @@ public class Item{
    public String getDescricao(){
        return descricao;
    }
+   
+   public boolean equals(Object obj){
+       Item outro = (Item)obj;
+       return outro.getQuantidade()== this.quantidade &&
+              this.descricao != null &&
+              outro != null &&
+              this.descricao.equals(outro.descricao);
+   }
 }
