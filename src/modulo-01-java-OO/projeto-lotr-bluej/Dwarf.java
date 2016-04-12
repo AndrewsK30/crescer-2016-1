@@ -51,4 +51,8 @@ public class Dwarf extends Raca{
    public DataTerceiraEra getDataNascimento(){
        return dataNascimento;
    }  
+   
+   public static Dwarf descobrirMenosVida(Dwarf dwarf1,Dwarf dwarf2){
+       return dwarf1.getVida() < dwarf2.getVida() ? dwarf1 : dwarf2;
+   }
  }

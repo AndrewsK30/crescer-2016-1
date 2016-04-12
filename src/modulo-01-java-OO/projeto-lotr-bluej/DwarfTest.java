@@ -245,4 +245,24 @@ public class DwarfTest
         dwarf.getInventario().ordenarItens();
         assertEquals("Peitoral,Escudo,Adagas", dwarf.getInventario().getDescricoesItens());
     }
+    @Test
+    public void primeiroDwarfTemMenosVida(){
+        Dwarf dwarf1 = new Dwarf("dwarf");
+        Dwarf dwarf2 = new Dwarf("dwarf");
+        dwarf1.perderVida();
+        assertEquals(dwarf1,Dwarf.descobrirMenosVida(dwarf1,dwarf2));        
+    }
+    @Test
+    public void segundoDwarfTemMenosVida(){
+        Dwarf dwarf1 = new Dwarf("dwarf");
+        Dwarf dwarf2 = new Dwarf("dwarf");
+        dwarf2.perderVida();
+        assertEquals(dwarf2,Dwarf.descobrirMenosVida(dwarf1,dwarf2));        
+    }
+    @Test
+    public void dwafrsTemMesmaVida(){
+        Dwarf dwarf1 = new Dwarf("dwarf");
+        Dwarf dwarf2 = new Dwarf("dwarf");
+        assertEquals(dwarf2,Dwarf.descobrirMenosVida(dwarf1,dwarf2));        
+    }
 }
