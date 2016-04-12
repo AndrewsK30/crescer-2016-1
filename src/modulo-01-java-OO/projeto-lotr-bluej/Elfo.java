@@ -1,15 +1,14 @@
 public class Elfo extends Raca{
-    private int flechas = 42;
-    private int vida = 100;
-    
+    protected int flechas = 42;  
+    protected int vida = 100;
     public Elfo(String nome, int flechas){
         // inicializa variáveis de instância
        super(nome);
-       this.flechas=flechas;
+       this.flechas=flechas;       
     }    
      //Exercício 3-E a resposta para tudo é...
     public Elfo(String nome){
-       super(nome);
+       super(nome);     
     }   
     
     public int getFlechas(){
@@ -26,6 +25,10 @@ public class Elfo extends Raca{
        flechaNoSingular ? "flecha" : "flechas",
        this.experiencia,
        experienciaNoSingular ? "nível" : "níveis");
+    }
+     
+    public int getVida(){
+       return vida;
     }
     
     public void atirarFlecha(Dwarf dwarf) {
