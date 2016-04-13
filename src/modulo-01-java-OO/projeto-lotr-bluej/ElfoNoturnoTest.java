@@ -5,6 +5,10 @@ import org.junit.Test;
 
 public class ElfoNoturnoTest{
    private final double DELTA = 0.0;
+   @After
+   public void tearDown(){
+       System.gc();
+   }
    @Test
    public void atirou22FlechadasEMoreu(){
         Elfo legolas = new ElfoNoturno("Legolas");

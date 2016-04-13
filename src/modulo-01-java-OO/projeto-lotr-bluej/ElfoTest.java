@@ -4,7 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ElfoTest
-{
+{   
+    @After
+    public void tearDown(){
+        System.gc();
+    }
     @Test
     public void atira1flecha(){
         Elfo legolas=new Elfo("Legolas",32);
@@ -47,10 +51,9 @@ public class ElfoTest
     } 
     @Test  
     public void adicionado2Elfos(){ 
-        int quantosElfosAteAgora = Elfo.contador;
         Elfo legolas=new Elfo("Legolas",3); 
         Elfo legolas2=new Elfo("Legolas",3); 
-        assertEquals(quantosElfosAteAgora +2, Elfo.contador); 
+        assertEquals(2, Elfo.contador); 
     } 
     
 }

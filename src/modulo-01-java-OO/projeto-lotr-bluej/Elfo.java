@@ -27,7 +27,12 @@ public class Elfo extends Raca{
        this.experiencia,
        experienciaNoSingular ? "nível" : "níveis");
     }
-       
+    // "Destrutor" http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#finalize%28%29
+    protected void finalize() throws Throwable {
+       Elfo.contador--;
+       super.finalize();
+    }   
+    
     public void atirarFlecha(Dwarf dwarf) {
         this.experiencia++;
         this.flechas--;

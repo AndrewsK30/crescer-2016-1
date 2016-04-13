@@ -3,8 +3,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ElfosVerdesTest
-{
+public class ElfosVerdesTest{
+   @After
+   public void tearDown(){
+       System.gc();
+   }
    @Test
     public void atira2flecha(){
         Elfo legolas=new ElfoVerde("Legolas",32);
