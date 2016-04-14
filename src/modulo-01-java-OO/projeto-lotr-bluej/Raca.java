@@ -1,4 +1,4 @@
-public  class Raca{
+public abstract class Raca{
    protected String nome;   
    protected Status status = Status.VIVO;
    protected int experiencia=0;   
@@ -36,4 +36,6 @@ public  class Raca{
    public double getVida() {
        return this.vida;
    }
+   
+   public abstract void tentarSorte();
 }

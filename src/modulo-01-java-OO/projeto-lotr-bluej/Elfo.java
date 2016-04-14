@@ -38,4 +38,8 @@ public class Elfo extends Raca{
         this.flechas--;
         dwarf.perderVida();
     }
+    
+    public void tentarSorte(){
+    
+    }
 }
