@@ -12,7 +12,11 @@ public class  ExercitoDeElfos{
          exercito.put(elfo.getNome(), elfo);      
   }
   
-  public Elfo buscarPorNome(String nome){
+  public HashMap<String, Elfo> getExercito() {
+        return exercito;
+  }
+    
+  public Elfo buscar(String nome){
       return exercito.get(nome);
   }
   
@@ -25,7 +29,7 @@ public class  ExercitoDeElfos{
       }
   }  
   
-  public ArrayList<Elfo> buscarPorStatus(Status status){      
+  public ArrayList<Elfo> buscar(Status status){      
       return exercitoPorStatus.get(status);
   }  
 }
