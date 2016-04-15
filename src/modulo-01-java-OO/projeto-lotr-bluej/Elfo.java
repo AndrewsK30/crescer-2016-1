@@ -1,6 +1,7 @@
 public class Elfo extends Raca{
     protected int flechas = 42;  
     protected static int contador=0;
+    private EstrategiaDeAtaque estrategia = new Estrategia30CentoNoturno();
     public Elfo(String nome){
        super(nome);
        this.vida=100;
@@ -37,7 +38,7 @@ public class Elfo extends Raca{
         this.experiencia++;
         this.flechas--;
         dwarf.perderVida();
-    }
+    }   
     
     public void tentarSorte(){
     
