@@ -6,8 +6,8 @@ public class Estrategia30CentoNoturno implements EstrategiaDeAtaque{
    }
    
    public void atacar(ArrayList<Elfo> pelotao, ArrayList<Dwarf> dwarves){
-       
-       int intencoes = 0,
+       if(dwarves.size()==0 || pelotao.size()==0)return;
+       int totalElfos = 0,
            numDwarfs = dwarves.size(),
            numElfosNoturnos = 0,           
            ataquesNoturnos,
@@ -16,16 +16,12 @@ public class Estrategia30CentoNoturno implements EstrategiaDeAtaque{
        Elfo ElfoAtualDoAtaque = null;
            
        for(Elfo elfo : pelotao){
-           if(elfo instanceof ElfoNoturno){
-               numElfosNoturnos++;
-           }else if(!(elfo instanceof ElfoVerde)){
-               return;
-           }              
-           intencoes++;
+           if(elfo instanceof ElfoNoturno)
+               numElfosNoturnos++;           
+           totalElfos++;
        }
-       intencoes*=numDwarfs;
-       ataquesNoturnos=(int)(intencoes*0.3);
-       for(int i=0;i<intencoes-ataquesNoturnos;i++ ){
+       ataquesNoturnos=(int)(totalElfos*0.3*numDwarfs);
+       for(int i=0;i<totalElfos;i++ ){
            ElfoAtualDoAtaque =  pelotao.get(i);
            ehNoturno=ElfoAtualDoAtaque instanceof ElfoNoturno;
            if(ehNoturno && aux == ataquesNoturnos)continue;
