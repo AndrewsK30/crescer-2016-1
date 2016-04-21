@@ -5,9 +5,12 @@ public class Estrategia50Por50 implements EstrategiaDeAtaque{
        return ordemDeAtaque;
    }
    
-   public void atacar(ArrayList<Elfo> pelotao, ArrayList<Dwarf> dwarves){
+   public void atacar(ExercitoDeElfos exercito, ArrayList<Dwarf> dwarves){
+       exercito.agruparPorStatus();
+       ArrayList<Elfo> pelotao = exercito.buscar(Status.VIVO);
        int tamanhoExercitoElfos=pelotao.size();
-       if(dwarves.size()==0 || tamanhoExercitoElfos==0)return;
+       if(dwarves.size()==0 || tamanhoExercitoElfos==0 || metadeVerdeMetadeNoturno(pelotao))
+            return;
        ArrayList<Elfo> ordenaElfos = new ArrayList<>(tamanhoExercitoElfos);
        for (int i = 0; i < tamanhoExercitoElfos; i++) ordenaElfos.add(null);
        int colocaVerdePosArray=0,
@@ -21,14 +24,13 @@ public class Estrategia50Por50 implements EstrategiaDeAtaque{
            if(elfo instanceof ElfoNoturno){
                ordenaElfos.set(colocaNoturnoPosArray,elfo);
                //ordenaElfos.add(setArrayNoturno, elfo);
-               colocaNoturnoPosArray++;
+               colocaNoturnoPosArray+=2;
            }else{
                ordenaElfos.set(colocaVerdePosArray,elfo);
-               colocaVerdePosArray++;
+               colocaVerdePosArray+=2;
            }
        }
-       if(colocaVerdePosArray%2 == 0 && colocaNoturnoPosArray%2 == 0 ||
-          colocaVerdePosArray%2 != 0 && colocaNoturnoPosArray%2 != 0) return;       
+           
        for(Elfo elfo : ordenaElfos){
             for(Dwarf dwarf : dwarves){
                 elfo.atirarFlecha(dwarf);
@@ -36,5 +38,16 @@ public class Estrategia50Por50 implements EstrategiaDeAtaque{
             ordemDeAtaque.add(elfo);
        }      
        
+   }
+   private boolean metadeVerdeMetadeNoturno(ArrayList<Elfo> arrayElfos){
+    int noturnos=0,verdes=0;
+    for(Elfo elfo:arrayElfos){
+        if(elfo instanceof ElfoVerde){
+            verdes++;
+        }else{
+            noturnos++;
+        }    
+    }
+    return  verdes!=noturnos;
    }
 }
