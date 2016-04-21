@@ -22,7 +22,7 @@ public class ExercitoDeElfosTest
        exercito.alistar(legolasNoturno);
        exercito.alistar(legolasVerde);
        exercito.agruparPorStatus();
-       assertTrue("legolas noturno"==exercito.buscar(Status.MORTO).get(0).getNome());
+       assertEquals("legolas noturno",exercito.buscar(Status.MORTO).get(0).getNome());
        
     }
     @Test
