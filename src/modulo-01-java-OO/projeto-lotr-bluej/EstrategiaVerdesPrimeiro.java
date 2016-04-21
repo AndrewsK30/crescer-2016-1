@@ -5,7 +5,9 @@ public class EstrategiaVerdesPrimeiro implements EstrategiaDeAtaque{
        return ordemDeAtaque;
    }
    
-   public void atacar(ArrayList<Elfo> pelotao, ArrayList<Dwarf> dwarves){
+   public void atacar(ExercitoDeElfos exercito, ArrayList<Dwarf> dwarves){
+       exercito.agruparPorStatus();
+       ArrayList<Elfo> pelotao = exercito.buscar(Status.VIVO);
        if(dwarves.size()==0 || pelotao.size()==0)return;
        for(Elfo elfo: pelotao){
            if(elfo instanceof ElfoVerde){
