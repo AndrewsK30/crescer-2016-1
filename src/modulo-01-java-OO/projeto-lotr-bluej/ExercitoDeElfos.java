@@ -35,10 +35,8 @@ public class  ExercitoDeElfos{
         return exercitoPorStatus.get(status);
     }  
     
-    public void atacar(ArrayList<Dwarf> alvos) {
-        this.agruparPorStatus();
-        this.estrategia.atacar(
-            (this.buscar(Status.VIVO)),
+    public void atacar(ArrayList<Dwarf> alvos) {       
+        this.estrategia.atacar(this,
             alvos
         );
     }
