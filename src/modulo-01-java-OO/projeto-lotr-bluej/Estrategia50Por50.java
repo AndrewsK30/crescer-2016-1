@@ -9,7 +9,7 @@ public class Estrategia50Por50 implements EstrategiaDeAtaque{
        exercito.agruparPorStatus();
        ArrayList<Elfo> pelotao = exercito.buscar(Status.VIVO);
        int tamanhoExercitoElfos=pelotao.size();
-       if(dwarves.size()==0 || tamanhoExercitoElfos==0 || metadeVerdeMetadeNoturno(pelotao))
+       if(dwarves.size()==0 || tamanhoExercitoElfos==0 || naoAhMesmaProporcao(pelotao))
             return;
        ArrayList<Elfo> ordenaElfos = new ArrayList<>(tamanhoExercitoElfos);
        for (int i = 0; i < tamanhoExercitoElfos; i++) ordenaElfos.add(null);
@@ -39,7 +39,7 @@ public class Estrategia50Por50 implements EstrategiaDeAtaque{
        }      
        
    }
-   private boolean metadeVerdeMetadeNoturno(ArrayList<Elfo> arrayElfos){
+   private boolean naoAhMesmaProporcao(ArrayList<Elfo> arrayElfos){
     int noturnos=0,verdes=0;
     for(Elfo elfo:arrayElfos){
         if(elfo instanceof ElfoVerde){
