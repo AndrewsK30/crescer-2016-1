@@ -1,0 +1,72 @@
+html { 
+  font-family: arial;
+  background: url("../img/background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#menu{
+   	display: table; 
+    margin: 0 auto;
+    margin-top: 14%;
+     
+}
+#menu ul {
+    
+    font-weight: bold;
+    font-size: 18px;
+     display: inline-block;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    list-style-type: none;      
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(115,111,109,0.5);
+    border: 1px solid #fff
+}
+#menu li {
+    float: left;
+}
+
+#menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 40px;
+    text-decoration: none;
+}
+#content-wrapper{
+    
+    margin: 0 auto;
+    margin-top: 2%;
+    width: 47%;
+    background-color: #EDEDED;
+}
+
+#content-wrapper #title{
+    font-weight: bold;
+    font-size: 26px;
+    color: white;
+    background-color: #444444;
+    padding: 3% 3%;
+}
+#content{
+        padding: 3% 3%; 
+        display:inline-block;
+}
+#content span{
+    font-weight: bold;
+}
+
+@media screen and (max-width : 1500px) {
+    #content-wrapper{
+        width: 700px;
+    }
+}
+
+@media screen and (max-width : 725px) {
+    #content-wrapper{
+        width: 99%;
+    }
+}
