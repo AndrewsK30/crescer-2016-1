@@ -1,0 +1,45 @@
+.header{
+    background-color:red;
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    top:0px;
+    left: 0px;
+    z-index: 99
+}
+.content-wrapper-1{
+    background-color: lightblue;
+    width: 1200px;
+    height: 300px;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.content{    
+    float: left;
+    background: grey;
+    margin: 10px;
+    height: 50%;
+    width: 200px;
+    position: relative;
+}
+.content-wrapper-2 .content{
+    width: 200px;
+    height: 300px;
+}
+.um{
+    background-color: blueviolet;
+    left:440px
+}
+.tres{
+    background-color: bisque;
+    right: 440px;
+}
+.content-wrapper-2{
+    background-color: firebrick;
+    overflow: auto;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.content-wrapper-2 .content:nth-child(4n +1){
+    clear: left;
+}
