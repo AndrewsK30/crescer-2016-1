@@ -151,13 +151,25 @@ body {
 
 .content-title{
     background-color: #F1F3F5;
-    padding: 20px;
-    
+    padding: 20px;    
 }
-.col-xl-3{
-    background-color: white;
-    border: 4px solid transparent; 
-     
+.first-line-content .col-md-3 div{
+    background-color: #F1F3F5;
+    padding: 10px;
+    margin-top: 20px;
+}
+.icone{
+    font-size: 2em;
+}
+.second-line-content {
+    background-color:  #F1F3F5;
+    padding: 20px ;    
+    margin-top: 20px;
+}
+.third-line-content div{
+    background-color:  #F1F3F5;
+    padding: 20px ;    
+    margin-top: 20px;
 }
 .blue{
     color: #B5D1D8;
