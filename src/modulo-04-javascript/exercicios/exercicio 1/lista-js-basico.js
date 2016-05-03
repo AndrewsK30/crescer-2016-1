@@ -50,7 +50,7 @@ function contarPorTipo(obj,tipo){
     for (var campo in obj) {
         if (qualTipo(obj[campo]) === tipo) contador++;
     }
-  return contador;
+    return contador;
 }
 
 
