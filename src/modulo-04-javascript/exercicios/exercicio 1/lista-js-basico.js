@@ -38,28 +38,25 @@ function fiboSum(n) {
 
 function queroCafe(mascada,precos){
     return precos.filter(function(valor){
-                return valor <=mascada;
+                return valor <= mascada;
            }).sort().toString();    
 }
 
-function contarPorTipo(obj,tipoComparacao){
-    var quantidade = 0,
-        tipo=tipoComparacao;
-    if(tipo === 'null')tipo = null;    
-    for (var camp in obj) {
-         if (typeof obj[camp] === tipo && obj[camp] !== null && !Array.isArray(obj[camp]) ||
-             obj[camp] === tipo || 
-             tipo ==='array' && Array.isArray(obj[camp]))
-                quantidade++;
-         
+function contarPorTipo(obj,tipo){
+    function qualTipo(v) {
+        return v === null ? 'null' : typeof v !== 'undefined' && v.constructor === Array ? 'array' : typeof v;
     }
-    return quantidade;
+    var contador = 0;
+    for (var campo in obj) {
+        if (qualTipo(obj[campo]) === tipo) contador++;
+    }
+  return contador;
 }
 
 
 /* * Variaveis locais sempre tem prioridade do que as globais.
-   * Definição de "hoisting", por padrão o javascript leva todas as declarações para o topo do escopo atual(No topo do script ou da função).
-   * Então concluido, na função revelarSaiyaman gohan é levado acima por ser variavel local, e não é definida até a linha 69, ou seja , fica undefined.
+   * Definição de "hoisting"- por padrão o javascript leva todas as declarações para o topo do escopo atual(No topo do script ou da função).
+   * Então concluido, na função revelarSaiyaman gohan é levado acima por ser variavel local, e não é definida até a linha 68, ou seja , fica undefined.
      goku (variável global) recebe 'Son Goku', e a variável local gohan recebe  'Son' + undefined, e retorna para onde foi chamado.
 
 */
