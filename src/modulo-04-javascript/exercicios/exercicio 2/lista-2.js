@@ -95,26 +95,42 @@ function obterSobrepeso() {
     });
 }
 //extra
+function permute(string) {
+
+    var distinct = {};
+    recur(string, "").forEach(function (result) {
+        distinct[result] = true;
+    });
+    return Object.keys(distinct);
+}
+
 function gerarPalavras(obj) {
-    function combinacaoletras(array) {
-        var retorno = [];
-        for (var i = 0; i < array.length; i++)
-            for (var j = 0; j < array.length; j++)
-                for (var k = 0; k < array.length; k++) {
-                    if (i !== j && i !== k && j !== k)
-                        retorno.push(array[i] + array[j] + array[k]);
-                }
-        return retorno.sort();
+    function combinacaoletras(string, prefixo) {
+        if (string.length === 0) {
+            return [prefixo];
+        } else {
+            var retorno = [];
+            for (var i = 0; i < string.length; i++) {
+                var pre = string.substring(0, i);
+                var pos = string.substring(i + 1);
+                retorno = retorno.concat(combinacaoletras(pre + pos, string[i] + prefixo));
+            }
+            return retorno;
+        }
     }
 
 
-    var arrayLetras = '';
+    var arrayLetras = ''
+        , distintos = {};
     for (var campo in obj) {
         for (var i = 0; i < obj[campo].length; i++) {
             arrayLetras += obj[campo][i].repeat(campo);
         }
     }
-    arrayLetras = arrayLetras.split("");
-    return combinacaoletras(arrayLetras);
+
+    combinacaoletras(arrayLetras, '').forEach(function (item) {
+        distintos[item] = true;
+    });
+    return Object.keys(distintos).sort();
 
 }
