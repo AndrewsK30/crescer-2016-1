@@ -1,6 +1,14 @@
 'use strict'
 Number.prototype.precisaoDeDois = function () {
-    return Number(this.toFixed(2));
+    return Math.round(this * 100) / 100;
+}
+
+Number.prototype.lbParaKg = function () {
+    return this * 0.4536;
+}
+
+Number.prototype.cmParaM = function () {
+    return this * 0.01;
 }
 
 Array.prototype.filtroSemPeso = function () {
@@ -26,12 +34,7 @@ function obterCavaleiroComMaisGolpes() {
 
 function obterMesesComMaisAniversarios() {
     var contador = {}
-        , meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"
-
-
-
-            
-            , "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+        , meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
         , retorno = [];
     goldSaints.forEach(function (obj) {
         var mes = new Date(obj.dataNascimento).getMonth();
@@ -54,78 +57,64 @@ function obterAlturaMedia() {
         return item.alturaCm;
     }).reduce(function (x, y) {
         return x + y;
-    }) / (goldSaints.length * 100)).precisaoDeDois();
+    }) / goldSaints.length).cmParaM().precisaoDeDois();
 }
 
 function obterAlturaMediana() {
-    return (function () {
-        var metade = Math.floor(goldSaints.length / 2)
-            , arrayOrdenado = goldSaints.map(function (item) {
-                return item.alturaCm;
-            }).sort(function (x, y) {
-                return x - y;
-            });
-        return (arrayOrdenado.length % 2 ? arrayOrdenado[metade] :
-            (arrayOrdenado[metade - 1] + arrayOrdenado[metade]) / 2.0) / 100;
-    })().precisaoDeDois();
+    var goldSaintsOrdenados = goldSaints.concat().sort(function (a, b) {
+        return a.alturaCm - b.alturaCm;
+    });
+    var itemDoMeio = goldSaintsOrdenados.length / 2;
+    return ((goldSaintsOrdenados[itemDoMeio].alturaCm + goldSaintsOrdenados[itemDoMeio - 1].alturaCm) / 2).cmParaM().precisaoDeDois();
 }
 
-function obterPesoMedio() {
-    var arrayOrdenadoFiltrado = goldSaints.filtroSemPeso().map(function (item) {
+function obterPesoMedio(cavaleiros) {
+    var arrayOrdenadoFiltrado = (cavaleiros || goldSaints).filtroSemPeso().map(function (item) {
         return item.pesoLb;
     });
 
-    return ((arrayOrdenadoFiltrado.reduce(function (x, y) {
+    return (arrayOrdenadoFiltrado.reduce(function (x, y) {
         return x + y;
-    }) / arrayOrdenadoFiltrado.length) * 0.4536).precisaoDeDois();
+    }) / arrayOrdenadoFiltrado.length).lbParaKg().precisaoDeDois();
 }
 
 function obterPesoMedioDoadores() {
-    var arrayOrdenadoFiltrado = obterDoadores().filtroSemPeso().map(function (item) {
-        return item.pesoLb;
-    })
-
-
-    return ((arrayOrdenadoFiltrado.reduce(function (x, y) {
-        return x + y;
-    }) / arrayOrdenadoFiltrado.length) * 0.4536).precisaoDeDois();
+    return obterPesoMedio(obterDoadores());
 }
 
 function obterIMC() {
-    var listaDeImc = [];
-    goldSaints.filtroSemPeso().forEach(function (item) {
-        listaDeImc.push(((item.pesoLb * 0.4536) / Math.pow(item.alturaCm * 0.01, 2)).precisaoDeDois());
+    return goldSaints.filtroSemPeso().map(function (item) {
+        return ((item.pesoLb.lbParaKg()) / Math.pow(item.alturaCm.cmParaM(), 2)).precisaoDeDois();
     });
-    return listaDeImc;
 }
 
 function obterSobrepeso() {
     var arrayIMC = obterIMC();
     return goldSaints.filtroSemPeso().filter(function (item, index) {
-        return arrayIMC[index] >= 25 && arrayIMC[index] <= 29.99;
+        return arrayIMC[index] >= 25 && arrayIMC[index] < 30;
     });
 }
-
+//extra
 function gerarPalavras(obj) {
-    function combinacaoletras(array){
-        var retorno=[];
-        for(var i = 0; i < array.length;i++)
-	    for(var j = 0;j < array.length;j++)
-		for(var k = 0;k < array.length;k++){
-		    if(i!==j && i!==k && j!==k)
-			retorno.push(array[i]+array[j]+array[k]);
-		}
+    function combinacaoletras(array) {
+        var retorno = [];
+        for (var i = 0; i < array.length; i++)
+            for (var j = 0; j < array.length; j++)
+                for (var k = 0; k < array.length; k++) {
+                    if (i !== j && i !== k && j !== k)
+                        retorno.push(array[i] + array[j] + array[k]);
+                }
         return retorno.sort();
     }
-    
-    
+
+
     var arrayLetras = '';
     for (var campo in obj) {
-        for (var i=0;i<obj[campo].length;i++) {
+        for (var i = 0; i < obj[campo].length; i++) {
             arrayLetras += obj[campo][i].repeat(campo);
         }
     }
     arrayLetras = arrayLetras.split("");
     return combinacaoletras(arrayLetras);
-    
+
 }

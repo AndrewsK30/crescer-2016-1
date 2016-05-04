@@ -22,13 +22,13 @@ describe('Ex 3. Mes com mais aniversarios', function () {
 
 describe('Ex 4. Altura média', function () {
     it('obterAlturaMedia retorna a altura média dos guerreiros(em metros)', function () {
-        expect(1.85).toEqual(obterAlturaMedia());
+        expect(1.86).toEqual(obterAlturaMedia());
     });
 });
 
 describe('Ex 5. Altura mediana', function () {
     it('obterAlturaMediana retorna a altura mediana dos guerreiros(em metros)', function () {
-        expect(1.84).toEqual(obterAlturaMediana());
+        expect(1.85).toEqual(obterAlturaMediana());
     });
 });
 
@@ -36,7 +36,7 @@ describe('Ex 6. Peso médio de todos ou só de doadores', function () {
     it('obterPesoMedio retorna o peso médio dos guerreiros(em Kg)', function () {
         expect(84.27).toEqual(obterPesoMedio());
     });
-    
+
     it('obterPesoMedioDoadores retorna o peso médio dos guerreiros que são doadores(em Kg)', function () {
         expect(80.67).toEqual(obterPesoMedioDoadores());
     });
@@ -44,14 +44,29 @@ describe('Ex 6. Peso médio de todos ou só de doadores', function () {
 
 describe('Ex 7. Obter IMC dos guerreiros', function () {
     it('obterIMC retorna o IMC dos guerreiros que tem peso registrado', function () {
-        var arrayIMC=[22.64, 29.48, 24.62, 24.22, 24.84, 20.53, 24.54, 24.31, 23.99, 22.45, 21.5];
+        var arrayIMC = [22.64, 29.48, 24.62, 24.22, 24.84, 20.53, 24.54, 24.31, 23.99, 22.45, 21.5];
         expect(arrayIMC).toEqual(obterIMC());
     });
 });
 
 describe('Ex 8. Obter array com quem está acima do peso', function () {
     it('obterSobrepeso retorna um array com os guerreiros acima do peso e que tenha peso registrado', function () {
-        var quemEstaAcimaDoPeso= [{"id":2,"nome":"Aldebaran","dataNascimento":"1967-05-08T03:00:00.000Z","alturaCm":210,"pesoLb":286.600941,"signo":"Touro","tipoSanguineo":"B","localNascimento":"Brasil","localTreinamento":"Brasil","golpes":["Grande Chifre"],"imagens":[{"url":"https:\/\/cloud.githubusercontent.com\/assets\/526075\/14900419\/dca83616-0d66-11e6-9757-8d07311e6999.png","isThumb":true}]}];
+        var quemEstaAcimaDoPeso = [{
+            "id": 2
+            , "nome": "Aldebaran"
+            , "dataNascimento": "1967-05-08T03:00:00.000Z"
+            , "alturaCm": 210
+            , "pesoLb": 286.600941
+            , "signo": "Touro"
+            , "tipoSanguineo": "B"
+            , "localNascimento": "Brasil"
+            , "localTreinamento": "Brasil"
+            , "golpes": ["Grande Chifre"]
+            , "imagens": [{
+                "url": "https:\/\/cloud.githubusercontent.com\/assets\/526075\/14900419\/dca83616-0d66-11e6-9757-8d07311e6999.png"
+                , "isThumb": true
+            }]
+        }];
         expect(quemEstaAcimaDoPeso).toEqual(obterSobrepeso());
     });
 });
