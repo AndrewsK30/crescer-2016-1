@@ -3,7 +3,7 @@ Number.prototype.precisaoDeDois = function () {
     return Number(this.toFixed(2));
 }
 
-Array.prototype.filtroSemPeso = function (){
+Array.prototype.filtroSemPeso = function () {
     return this.filter(function (item) {
         return 'pesoLb' in item
     });
@@ -27,6 +27,7 @@ function obterCavaleiroComMaisGolpes() {
 function obterMesesComMaisAniversarios() {
     var contador = {}
         , meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"
+
 
 
             
@@ -100,7 +101,31 @@ function obterIMC() {
 
 function obterSobrepeso() {
     var arrayIMC = obterIMC();
-    return goldSaints.filtroSemPeso().filter(function (item,index) {
-                return arrayIMC[index] >= 25 && arrayIMC[index] <= 29.99;
-           });
+    return goldSaints.filtroSemPeso().filter(function (item, index) {
+        return arrayIMC[index] >= 25 && arrayIMC[index] <= 29.99;
+    });
+}
+
+function gerarPalavras(obj) {
+    function combinacaoletras(array){
+        var retorno=[];
+        for(var i = 0; i < array.length;i++)
+	    for(var j = 0;j < array.length;j++)
+		for(var k = 0;k < array.length;k++){
+		    if(i!==j && i!==k && j!==k)
+			retorno.push(array[i]+array[j]+array[k]);
+		}
+        return retorno.sort();
+    }
+    
+    
+    var arrayLetras = '';
+    for (var campo in obj) {
+        for (var i=0;i<obj[campo].length;i++) {
+            arrayLetras += obj[campo][i].repeat(campo);
+        }
+    }
+    arrayLetras = arrayLetras.split("");
+    return combinacaoletras(arrayLetras);
+    
 }
