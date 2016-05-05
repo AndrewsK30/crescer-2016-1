@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dia 04 - jQuery</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Menu</h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Adicione</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="col-md-12" id="detalhes-cavaleiro">
+
+                </div>
+                <di class="col-md-12">
+                    <ul id="cavaleiros"></ul>
+                </di>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+
+                <form role="form" id="frmNovoCavaleiro" method="POST">
+                    <div class="form-group">
+                        <label for="txtNomeCavaleiro">Nome:</label>
+                        <input type="text" class="form-control" id="txtNomeCavaleiro" placeholder="Entre o nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Tipo sanguineo:</label>
+                        <select class="form-control" id="slTipoSanguineo" name="tipoSanguineo">
+                            <option>Selecione</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="form-imgs">
+                        <label for="txtImagemCavaleiro">Url da img:</label>
+
+                    </div>
+                    <div class="form-group" id="golpes">
+                        <button class="btn btn-secondary" id="btnGolpe">Adicionar img</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="slSigno">Signo:</label>
+                        <select class="form-control" id="slSigno" name="tipoSigno">
+                            <option>Selecione</option>
+                            <option value="Escorpiao">Escorpião</option>
+                            <option value="Peixes">Peixes</option>
+                            <option value="Aquario">Aquário</option>
+                            <option value="Capricórnio">Capricórnio</option>
+                            <option value="Sagitario">Sagitário</option>
+                            <option value="Aries">Áries</option>
+                            <option value="Touro">Touro</option>
+                            <option value="libra">libra</option>
+                            <option value="Virgem">Virgem</option>
+                            <option value="Gemeos">Gêmeos</option>
+                            <option value="Cancer">Câncer</option>
+                            <option value="Leao">Leão</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLocalNasc">Local de nascimento:</label>
+                        <input type="text" class="form-control" id="txtLocalNasc" placeholder="Ex: Jamiel">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLocaTreinamento">Local de treinamento:</label>
+                        <input type="text" class="form-control" id="txtLocaTreinamento" placeholder="Ex: Tibete">
+                    </div>
+                    <div class="form-group" id="golpes">
+                        <label for="txtLocaTreinamento">Local de treinamento:</label>
+
+                    </div>
+                    <div class="form-group" id="golpes">
+                        <button class="btn btn-secondary btnGolpe">Adicionar golpe</button>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../lib/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="json.js"></script>
+    <script type="text/javascript" src="cadastro-cavaleiros.js"></script>
+</body>
+
+</html>
