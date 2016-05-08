@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Personagem.cs" />
+    <Compile Include="Bot.cs" />
+    <Compile Include="MegaMan.cs" />
+    <Compile Include="ProtoMan.cs" />
+    <Compile Include="Robo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
