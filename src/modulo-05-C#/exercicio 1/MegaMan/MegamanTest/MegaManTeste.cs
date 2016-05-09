@@ -34,20 +34,7 @@ namespace MegamanTest
             Assert.AreEqual("Nome:Mega Man, Vida:95, Ataque:6, Defesa:0", megaMan.ToString());
         }
         [TestMethod]
-        public void MegaManEhAtacadoAteSuaVidaChegarIgualA30()
-        {
-            MegaMan megaMan = new MegaMan();
-            Bot bot = new Bot();
-            for (int i = 0; i < 14; i++)
-            {
-                bot.Atacar(megaMan);
-            }
-            
-
-            Assert.AreEqual("Nome:Mega Man, Vida:30, Ataque:9, Defesa:0", megaMan.ToString());
-        }
-        [TestMethod]
-        public void MegaManAtcaComAvidaAbaixoDe30()
+        public void MegaManEhAtacadoAteSuaVidaChegarIgualA25()
         {
             MegaMan megaMan = new MegaMan();
             Bot bot = new Bot();
@@ -60,7 +47,20 @@ namespace MegamanTest
             Assert.AreEqual("Nome:Bot, Vida:91, Ataque:5, Defesa:0", bot.ToString());
         }
         [TestMethod]
-        public void MegamanEquipa1ItemEAtacaBot()
+        public void MegaManSoTemMais3QuandoAtaca()
+        {
+            MegaMan megaMan = new MegaMan();
+            Bot bot = new Bot();
+            for (int i = 0; i < 15; i++)
+            {
+                bot.Atacar(megaMan);
+            }
+           
+
+            Assert.AreEqual("Nome:Mega Man, Vida:25, Ataque:6, Defesa:0", megaMan.ToString());
+        }
+        [TestMethod]
+        public void MegaManEquipa1ItemEAtacaBot()
         {
             MegaMan megaMan = new MegaMan();
             Bot bot = new Bot();
@@ -73,7 +73,7 @@ namespace MegamanTest
             Assert.AreEqual("Nome:Bot, Vida:93, Ataque:5, Defesa:0", bot.ToString());
         }
         [TestMethod]
-        public void MegamanEquipa3ItemEAtacaBot()
+        public void MegaManEquipa3ItemEAtacaBot()
         {
             MegaMan megaMan = new MegaMan();
             Bot bot = new Bot();
@@ -91,7 +91,7 @@ namespace MegamanTest
             Assert.AreEqual("Nome:Bot, Vida:91, Ataque:5, Defesa:0", bot.ToString());
         }
         [TestMethod]
-        public void MegamanEquipa3ItemETemVidaMenorQue30()
+        public void MegaManEquipa3ItemETemVidaMenorQue30()
         {
             MegaMan megaMan = new MegaMan();
             Bot bot = new Bot();
@@ -107,11 +107,11 @@ namespace MegamanTest
             {
                 bot.Atacar(megaMan);
             }
-
-            Assert.AreEqual("Nome:Mega Man, Vida:4, Ataque:12, Defesa:3", megaMan.ToString());
+            megaMan.Atacar(bot);
+            Assert.AreEqual("Nome:Bot, Vida:88, Ataque:5, Defesa:0", bot.ToString());
         }
         [TestMethod]
-        public void MegamanEhAtacadoPorRushENaoAconteceNada()
+        public void MegaManEhAtacadoPorRushENaoAconteceNada()
         {
             MegaMan megaMan = new MegaMan();
             Rush rush = new Rush();
@@ -121,18 +121,36 @@ namespace MegamanTest
             Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:6, Defesa:0", megaMan.ToString());
         }
         [TestMethod]
-        public void MegamanComChipNivel1()
+        public void MegaManComChipNivel1()
         {
             MegaMan megaMan = new MegaMan(Chip.Nivel1);            
 
             Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:5, Defesa:0", megaMan.ToString());
         }
         [TestMethod]
-        public void MegamanComChipNivel3()
+        public void MegaManComChipNivel3()
         {
             MegaMan megaMan = new MegaMan(Chip.Nivel3);
 
             Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:8, Defesa:1", megaMan.ToString());
+        }
+        [TestMethod]
+        public void MegamTemDefesaMaiorQueAtaqueDeBot()
+        {
+            Rush rush = new Rush();
+            MegaMan megaMan = new MegaMan();
+            Bot bot = new Bot();
+            EscudoDeEnergia escudo = new EscudoDeEnergia();
+            BotasDeSuperVelocidade botasDeVelocidade = new BotasDeSuperVelocidade();
+
+            rush.EquiparUpgrade(escudo);
+            rush.EquiparUpgrade(botasDeVelocidade);
+
+            megaMan.EquiparUpgrade(rush);
+
+            bot.Atacar(megaMan);
+
+            Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:11, Defesa:6", megaMan.ToString());
         }
     }
 }
