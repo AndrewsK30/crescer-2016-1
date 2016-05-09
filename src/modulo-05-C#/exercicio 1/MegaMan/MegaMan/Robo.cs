@@ -10,39 +10,26 @@ namespace MegaManWorld
     {
         public String Nome { get; protected set; }
         protected int Vida { get; set; }
-        protected int ataque = 5,
-                      defesa,
-                      bonusAtaque,
-                      bonusDefesa,
-                      maxEquipamentos = 3;
-        protected List<IUpgrade> equipamentos = new List<IUpgrade>();
+        private Chip _chip;
+        private int ataque = 5,
+                      defesa;
+
+        protected List<IUpgrade> Equipamentos = new List<IUpgrade>();
         protected const Chip CHIP_PADRAO = Chip.Nivel2;
 
         public Robo(Chip chip = CHIP_PADRAO)
         {
             Vida = 100;
-            CalculaBonusChips(chip);
-        }
-
-        private void CalculaBonusChips(Chip chip)
-        {
-            switch (chip)
-            {
-                case Chip.Nivel1:
-                    bonusAtaque--;
-                    break;
-                case Chip.Nivel3:
-                    bonusAtaque += 2;
-                    bonusDefesa++;
-                    break;
-            }
+            _chip = chip;
         }
 
         protected virtual int Defesa
         {
             get
             {
-                return defesa + this.bonusDefesa;
+                return defesa + 
+                       BonusDeDefesaPorChip +
+                       BonusDeDefesaPorUpgrades;
             }
             set
             {
@@ -54,11 +41,39 @@ namespace MegaManWorld
         {
             get
             {
-                return ataque + this.bonusAtaque;
+                return ataque + 
+                       BonusDeAtaquePorChip + 
+                       BonusDeAtaquePorUpgrades;
             }
             set
             {
                 ataque = value;
+            }
+        }
+
+        protected int BonusDeAtaquePorUpgrades
+        {
+            get
+            {
+                int bonus = 0;
+
+                foreach (IUpgrade upgrade in Equipamentos)
+                    bonus += upgrade.BonusAtaque;
+
+                return bonus;
+            }
+        }
+
+        protected int BonusDeDefesaPorUpgrades
+        {
+            get
+            {
+                int bonus = 0;
+
+                foreach (IUpgrade upgrade in Equipamentos)
+                    bonus += upgrade.BonusDefesa;
+
+                return bonus;
             }
         }
 
@@ -67,10 +82,11 @@ namespace MegaManWorld
             robo.ReceberAtaque(this.Ataque);
         }
 
-        protected virtual void ReceberAtaque(int ataque)
+        public virtual void ReceberAtaque(int ataque)
         {
             int dano = ataque - this.Defesa;
-            this.Vida -= dano;
+            if(dano > 0)
+                this.Vida -= dano;
         }
 
         public override string ToString()
@@ -80,13 +96,49 @@ namespace MegaManWorld
 
         public virtual void EquiparUpgrade(IUpgrade upgrade)
         {
-            if (equipamentos.Count < this.maxEquipamentos)
+            if (this.MaxEquipamentos)
             {
-                this.bonusAtaque += upgrade.BonusAtaque;
-                this.bonusDefesa += upgrade.BonusDefesa;
-                equipamentos.Add(upgrade);
+                Equipamentos.Add(upgrade);
             }
             
+        }
+
+        protected virtual Boolean MaxEquipamentos
+        {
+            get
+            {
+                return Equipamentos.Count < 3;
+            }
+        }
+
+        private int BonusDeDefesaPorChip
+        {
+            get
+            {
+                switch (_chip)
+                {
+                    case Chip.Nivel3:
+                        return 1;
+                    default:
+                        return 0;
+                }
+            }
+        }
+
+        private int BonusDeAtaquePorChip
+        {
+            get
+            {
+                switch (_chip)
+                {
+                    case Chip.Nivel1:
+                        return -1;
+                    case Chip.Nivel3:
+                        return 2;
+                    default:
+                        return 0;
+                }
+            }
         }
     }
 }
