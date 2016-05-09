@@ -123,10 +123,16 @@ namespace MegamanTest
         [TestMethod]
         public void MegamanComChipNivel1()
         {
-            MegaMan megaMan = new MegaMan(Chip.Nivel1);
-            
+            MegaMan megaMan = new MegaMan(Chip.Nivel1);            
 
-            Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:6, Defesa:0", megaMan.ToString());
+            Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:5, Defesa:0", megaMan.ToString());
+        }
+        [TestMethod]
+        public void MegamanComChipNivel3()
+        {
+            MegaMan megaMan = new MegaMan(Chip.Nivel3);
+
+            Assert.AreEqual("Nome:Mega Man, Vida:100, Ataque:8, Defesa:1", megaMan.ToString());
         }
     }
 }
