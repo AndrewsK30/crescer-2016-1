@@ -17,19 +17,12 @@ namespace MegaManWorld
 
         }
 
-        protected override int Ataque
-        {
-            get
-            {
-                return (AindaNaoMorreu ? this.ataque : this.ataque + 2) + bonusAtaque;
-            }
-        }
-
-        protected override void ReceberAtaque(int ataque)
+        public override void ReceberAtaque(int ataque)
         {
             base.ReceberAtaque(ataque);
-            if (AindaNaoMorreu && this.Vida <= 0)
+            if (this.Vida <= 0  && AindaNaoMorreu)
             {
+                this.Ataque = 7;
                 this.Vida = 20;                
                 AindaNaoMorreu = false;                
             }
