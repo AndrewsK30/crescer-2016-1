@@ -7,7 +7,7 @@ namespace MegaManWorld
 {
     public class MegaMan : Robo
     {
-        public MegaMan() : base(chip)
+        public MegaMan(Chip chip = CHIP_PADRAO) : base(chip)
         {
             this.Nome = "Mega Man";
             this.Ataque = 6;

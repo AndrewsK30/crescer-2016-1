@@ -16,8 +16,9 @@ namespace MegaManWorld
                       bonusDefesa,
                       maxEquipamentos = 3;
         protected List<IUpgrade> equipamentos = new List<IUpgrade>();
+        protected const Chip CHIP_PADRAO = Chip.Nivel2;
 
-        public Robo(Chip chip = Chip.Nivel2)
+        public Robo(Chip chip = CHIP_PADRAO)
         {
             Vida = 100;
             CalculaBonusChips(chip);

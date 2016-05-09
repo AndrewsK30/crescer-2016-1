@@ -9,11 +9,12 @@ namespace MegaManWorld
     public class ProtoMan : Robo
     {
         Boolean AindaNaoMorreu = true;
-
-        public ProtoMan(Chip chip) : base(chip)
+        
+        public ProtoMan(Chip chip = CHIP_PADRAO) : base(chip)
         {
             this.Nome = "Proto Man";
             this.Defesa = 2;
+
         }
 
         protected override int Ataque

@@ -8,7 +8,7 @@ namespace MegaManWorld
 {
     public class Rush : Robo,IUpgrade
     {
-        public Rush(Chip chip) : base(chip)
+        public Rush(Chip chip = CHIP_PADRAO) : base(chip)
         {
             this.Nome = "Rush";
             this.Ataque = 4;
