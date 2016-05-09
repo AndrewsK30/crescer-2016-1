@@ -12,15 +12,14 @@ namespace MegaManWorld
         {
             this.Nome = "Rush";
             this.Ataque = 4;
-            this.Defesa = 3;
-            this.maxEquipamentos = 2;
+            this.Defesa = 3;           
         }
 
         int IUpgrade.BonusAtaque
         {
             get
             {
-                return this.ataque + this.bonusAtaque;
+                return this.Ataque;
             }
         }
 
@@ -28,13 +27,22 @@ namespace MegaManWorld
         {
             get
             {
-                return this.defesa + this.bonusDefesa;
+                return this.Defesa;
+            }
+        }
+
+        protected override Boolean MaxEquipamentos
+        {
+            get
+            {
+                return Equipamentos.Count < 2;
             }
         }
 
         public override void Atacar(Robo robo)
         {
-            if (!(robo is MegaMan)) base.Atacar(robo);
+            if (!(robo is MegaMan))
+                base.Atacar(robo);
 
         }
     }
