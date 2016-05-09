@@ -11,15 +11,17 @@ namespace MegaManWorld
         {
             this.Nome = "Mega Man";
             this.Ataque = 6;
-            
+
         }
-        
-        protected override int Ataque
+
+        public override void Atacar(Robo robo)
         {
-            get
-            {
-                return (this.Vida <= 30 ? this.ataque + 3 : this.ataque) + this.bonusAtaque;
-            }
+            int ataqueFinal = this.Vida < 30 ?
+                                this.Ataque + 3 :
+                                this.Ataque;           
+
+            robo.ReceberAtaque(ataqueFinal);
         }
+
     }
 }
