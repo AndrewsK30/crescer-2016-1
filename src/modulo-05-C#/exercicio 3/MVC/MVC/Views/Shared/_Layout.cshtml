@@ -2,40 +2,26 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-<html lang="pt">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Street Fighter - @ViewBag.Title</title>
-    <link href="~/Content/Estilos/main.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/Estilos/main.css">
+    <title>Street Fighter</title>
 </head>
-
 <body>
-    <div class="menu">
-        <span class="item">
-            @Html.ActionLink("Inicio", "Index", "StreetFighter", new { style = "border: 1px solid yellow;", @class = "menu-link" })            
-            @*<a href="~/StreetFighter">Início</a>*@
-        </span>
-        <span class="item">
-            <a href="https://www.google.com.br/search?q=Street+Fighter&tbm=nws">Noticia</a>
-        </span>
-        <span class="item">
-            <a href="ficha-tecnica.html#conteudo">Ficha Técnica</a>
-        </span>
-        <span class="item">
-            <a href="sobre.html#conteudo">Sobre</a>
-        </span>
+    <div id="menu">
+        <ul>
+            <li><a href="index">Inicio</a></li>
+            <li><a href="http://www.google.com/search?q=street+Fighter">Noticia</a></li>
+            <li><a href="fichatecnica">Ficha Técnica</a></li>
+            <li><a href="sobre">Sobre</a></li>
+        </ul>
     </div>
-
-    <div id="conteudo" class="conteudo">
-        <div class="titulo">
-            <h1>@ViewBag.Title</h1>
-        </div>
-
-        <div class="corpo">
-            @RenderBody()
-        </div>
+    <div id="content-wrapper">
+        @RenderBody()
     </div>
 </body>
 </html>
