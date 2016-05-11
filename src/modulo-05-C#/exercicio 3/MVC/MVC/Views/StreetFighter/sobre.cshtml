@@ -1,0 +1,16 @@
+﻿@model SobreMimModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+            <div class="title">Sobre</div>
+            <div class="content">
+             <img src="https://avatars2.githubusercontent.com/u/13906420?v=3&s=460" style="float:left;padding-right:2px;width:40%;heigth:40%">
+             <span>Nome:</span> @Model.Nome <br>
+             <span>Nascimento:</span> @Model.DataDeNascimento.ToShortDateString() <br>
+             <span>Altura:</span>@Model.Altura <br>
+             <span>GitHub:</span> <a href="@Model.LinkGitHub">@Model.LinkGitHub</a><br> 
+             
+            </div>
+  
