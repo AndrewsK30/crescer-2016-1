@@ -51,7 +51,7 @@ body {
     background-color: #444444;
     padding: 3% 3%;
 }
-#content{
+.content{
         padding: 3% 3%; 
         display:inline-block;
 }
