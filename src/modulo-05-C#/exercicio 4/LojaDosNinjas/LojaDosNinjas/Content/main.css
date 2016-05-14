@@ -1,0 +1,26 @@
+﻿@font-face {
+  font-family: 'japanese';
+  src:  url('Vnhltfap.ttf') format('ttf')
+}
+body {
+    background:url(background.png) no-repeat no-repeat left top fixed ; 
+}
+.logo{
+   
+    padding:2em 0;
+    margin:2em;
+    background-color:#1F1F21;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+}
+
+
+.logo-text {
+    margin:0.7em 0;
+    font-family:japanese;
+    color:red;
+    font-size:3em;
+}
