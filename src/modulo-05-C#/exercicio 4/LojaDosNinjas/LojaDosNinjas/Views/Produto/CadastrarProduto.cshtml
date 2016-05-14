@@ -3,9 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    @using (Html.BeginForm("SalvarProduto","Produto",FormMethod.Post, new { id = "form-cadastro-produto" })) 
+    @using (Html.BeginForm("SalvarProduto", "Produto", FormMethod.Post, new { id = "form-cadastro-produto" }))
     {
-        @Html.AntiForgeryToken()        
+               @Html.HiddenFor(model => model.Id)
+               @Html.AntiForgeryToken()
+
         <div class="form-horizontal form-itens">            
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
