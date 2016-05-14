@@ -13,6 +13,10 @@ namespace LojaNinja.MVC.Controllers
     {
         private RepositorioVendas repositorio = new RepositorioVendas();
         // GET: Produto
+        public ActionResult Index()
+        {
+            return View();
+        }
         public ActionResult CadastrarProduto(int? id)
         {
 
@@ -21,13 +25,17 @@ namespace LojaNinja.MVC.Controllers
                 var pedido = repositorio.ObterPedidoPorId(id.Value);
 
                 var model = new ProdutoModel()
-                //{
-                //    Id = pedido.Id,
-                //    DataEntrega = pedido.DataEntregaDesejada,
-                //    NomeCliente = pedido.NomeCliente,
-                //    //...
-                //}
-                ;
+                {
+                    Id = pedido.Id,
+                    DataEntrega = pedido.DataEntregaDesejada,
+                    NomeCliente = pedido.NomeCliente,
+                    Nome = pedido.NomeProduto,
+                    ValorVenda = pedido.Valor,
+                    Pagamento = pedido.TipoDePagamento,
+                    Cidade = pedido.Cidade,
+                    Estado = pedido.Estado
+
+                };
 
                 return View("CadastrarProduto", model);
             }
@@ -43,7 +51,7 @@ namespace LojaNinja.MVC.Controllers
             {
                 try
                 {
-                    var pedido = new Pedido(model.DataEntrega, model.Nome, model.ValorVenda, model.Pagamento, model.NomeCliente, model.Cidade, model.Estado);
+                    var pedido = new Pedido(model.Id.GetValueOrDefault(), model.DataEntrega, model.Nome, model.ValorVenda, model.Pagamento, model.NomeCliente, model.Cidade, model.Estado);
 
                     if (model.Id.HasValue)
                     {
