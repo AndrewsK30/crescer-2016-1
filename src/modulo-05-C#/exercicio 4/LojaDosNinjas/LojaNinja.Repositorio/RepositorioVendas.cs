@@ -36,7 +36,7 @@ namespace LojaNinja.Repositorio
             {
                 var utlimoId = this.ObterPedidos().Max(x => x.Id);
                 var idGerado = utlimoId + 1;
-                var novaLinha = ConvertePedidoEmLinhaCSV(pedido, idGerado);
+                var novaLinha = ConvertePedidoEmLinhaCSV(pedido, idGerado,false);
 
                 File.AppendAllText(PATH_ARQUIVO, novaLinha);
 
@@ -44,12 +44,13 @@ namespace LojaNinja.Repositorio
             }
         }
 
-        private string ConvertePedidoEmLinhaCSV(Pedido pedido, int proximoId)
+        private string ConvertePedidoEmLinhaCSV(Pedido pedido, int proximoId,bool precisaNovaLinha)
         {
-            return string.Format(Environment.NewLine + "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9}",
+            var novaLinha= precisaNovaLinha ? Environment.NewLine:"";
+            return string.Format(novaLinha + "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9}",
                                 proximoId,
-                                pedido.DataPedido.ToString("dd/MM/yyyy HH:mm"),
-                                pedido.DataEntregaDesejada.ToString("dd/MM/yyyy HH:mm"),
+                                pedido.DataPedido.ToString("dd/MM/yyyy"),
+                                pedido.DataEntregaDesejada.ToString("dd/MM/yyyy"),
                                 pedido.NomeProduto,
                                 pedido.Valor,
                                 pedido.TipoDePagamento,
@@ -61,24 +62,22 @@ namespace LojaNinja.Repositorio
 
         public void AtualizarPedido(Pedido pedido)
         {
-            string linha;           
-            using (StringReader reader = new StringReader(PATH_ARQUIVO))
+            string linha;
+            string IdDoPedido = pedido.Id.ToString();
+            using (StreamReader reader = new StreamReader(PATH_ARQUIVO))
             {
-                
+                linha = reader.ReadLine();
                 while ((linha = reader.ReadLine()) != null)
-                {
-
-                    if (Convert.ToInt32(linha.Split(';')[0]) == pedido.Id)
+                {                 
+                    if (linha.Split(';')[0] == IdDoPedido)
                         break;
 
 
                 }
             }
-            
-            File.WriteAllText(PATH_ARQUIVO,
-                              ObterDados().ToString().Replace(
-                                          linha, ConvertePedidoEmLinhaCSV(pedido,pedido.Id)
-                                          ));
+            var g = File.ReadAllText(PATH_ARQUIVO);
+            var gReplace = g.Replace(linha, ConvertePedidoEmLinhaCSV(pedido, pedido.Id,false));
+            File.WriteAllText(PATH_ARQUIVO, gReplace);
 
         }
 
