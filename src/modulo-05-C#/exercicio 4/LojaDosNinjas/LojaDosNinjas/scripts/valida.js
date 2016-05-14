@@ -41,5 +41,6 @@
             form.submit();
         }
     });
-    $("#form-data-entrega").datepicker();
+
+    $("#form-data-entrega").datepicker('setDate', new Date());
 });
