@@ -37,10 +37,10 @@
         {
         <tr>
             <td>
-                @item.DataPedido
+                @item.DataPedido.ToShortDateString()
             </td>
             <td>
-                @item.DataEntregaDesejada
+                @item.DataEntregaDesejada.ToShortDateString()
             </td>
             <td>
                 @item.NomeProduto
@@ -53,6 +53,9 @@
             </td>
             <td>
                 @item.Cidade
+            </td>
+            <td>
+                @item.Estado
             </td>
             <td>
                 @item.Estado
