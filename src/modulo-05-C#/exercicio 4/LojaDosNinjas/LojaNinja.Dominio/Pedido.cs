@@ -22,7 +22,7 @@ namespace LojaNinja.Dominio
         /// <summary>
         /// Construtor utilizado para montar pedidos novos
         /// </summary>
-        public Pedido(DateTime dataEntregaDesejada, string nomeProduto, decimal valor, TipoPagamento tipoPagamento, string nomeCliente, string cidade, string estado)
+        public Pedido(int id, DateTime dataEntregaDesejada, string nomeProduto, decimal valor, TipoPagamento tipoPagamento, string nomeCliente, string cidade, string estado)
         {
             DataEntregaDesejada = dataEntregaDesejada;
             NomeProduto = nomeProduto;
@@ -31,6 +31,7 @@ namespace LojaNinja.Dominio
             NomeCliente = nomeCliente;
             Cidade = cidade;
             Estado = estado;
+            Id = id;
 
             //DateTime.Now contaria as horas, minutos e segundos, isso inviabliziaria algumas validações a seguir
             DataPedido = DateTime.Today;
