@@ -1,4 +1,32 @@
-﻿.form-itens {
+﻿@font-face {
+  font-family: 'japanese';
+  src:  url('Vnhltfap.ttf') format('ttf')
+}
+#body-index{
+    background:url(katana.jpg) no-repeat no-repeat left top fixed ;
+    height:40em;
+    background-size: 100% 50%;
+}
+.logo{
+   
+    padding:2em 0;
+    margin:2em;
+    background-color:#1F1F21;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+}
+
+
+.logo-text {
+    margin:0.7em 0;
+    font-family:japanese;
+    color:red;
+    font-size:3em;
+}
+.form-itens {
     padding: 50px;
 }
 
@@ -20,4 +48,8 @@
 
 .ninja-font {
     font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.urgente{
+    color:red;
 }

@@ -12,7 +12,7 @@ namespace LojaNinja.MVC.Controllers
     public class ProdutoController : Controller
     {
         private RepositorioVendas repositorio = new RepositorioVendas();
-        // GET: Produto
+        // TODO: Refazer Index, E refazer design.
         public ActionResult Index()
         {
             return View();
@@ -80,11 +80,7 @@ namespace LojaNinja.MVC.Controllers
         }
         public ActionResult Listagem(string cliente, string produto)
         {
-            var pedidos = repositorio.ObterPedidos();
-            if (!string.IsNullOrEmpty(cliente))
-                pedidos = pedidos.Where(x => x.NomeCliente.ToLower() == cliente.ToLower()).ToList();
-            if (!string.IsNullOrEmpty(produto))
-                pedidos = pedidos.Where(x => x.NomeProduto.ToLower() == produto.ToLower()).ToList();
+            var pedidos = repositorio.ObterPedidos(cliente, produto);
             return View(pedidos);
         }
         public ActionResult Excluir(int id)

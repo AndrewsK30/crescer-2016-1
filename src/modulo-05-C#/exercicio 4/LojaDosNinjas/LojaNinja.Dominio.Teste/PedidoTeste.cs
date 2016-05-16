@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LojaNinja.Dominio.Teste
 {
     [TestClass]
-    public class UnitTest1
+    public class PedidoTeste
     {
         [TestMethod]
-        public void TestMethod1()
+        public void EntragaDePedidoMenorQue()
         {
+            //TODO:Testes da classe Pedido
         }
     }
 }

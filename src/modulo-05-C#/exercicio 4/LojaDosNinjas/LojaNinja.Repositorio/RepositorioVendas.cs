@@ -10,19 +10,24 @@ namespace LojaNinja.Repositorio
 {
     public class RepositorioVendas
     {
-        private string PATH_ARQUIVO = @"C:\Users\Andrews\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
-
+        //TODO:Refactory nas classes.
+        //private string PATH_ARQUIVO = @"C:\Users\Andrews\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
+        private string PATH_ARQUIVO = @"C:\Users\andrews.silva\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
         private static readonly object objetoLock = new object();
 
         private List<string> ObterDados()
         {
             return File.ReadAllLines(PATH_ARQUIVO, Encoding.UTF8).ToList();
         }
-        public List<Pedido> ObterPedidos()
+        public List<Pedido> ObterPedidos(string cliente = null, string produto = null)
         {
             var linhasArquivo = ObterDados();
-
-            return ConverteLinhasEmPedidos(linhasArquivo);
+            var linhasConvertidas = ConverteLinhasEmPedidos(linhasArquivo);
+            if (!string.IsNullOrEmpty(cliente))
+                linhasConvertidas = linhasConvertidas.Where(x => x.NomeCliente.ToLower() == cliente.ToLower()).ToList();
+            if (!string.IsNullOrEmpty(produto))
+                linhasConvertidas = linhasConvertidas.Where(x => x.NomeProduto.ToLower() == produto.ToLower()).ToList();
+            return linhasConvertidas;
         }
 
         public Pedido ObterPedidoPorId(int id)
