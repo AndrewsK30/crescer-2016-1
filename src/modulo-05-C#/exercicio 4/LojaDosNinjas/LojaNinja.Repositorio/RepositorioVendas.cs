@@ -10,17 +10,17 @@ namespace LojaNinja.Repositorio
 {
     public class RepositorioVendas
     {
-        private string PATH_ARQUIVO = @"C:\Users\Andrews\Documents\crescer-2016-1-Master\src\modulo-05-dotnet\Aula 5\LojaNinja\vendas.txt";
+        private string PATH_ARQUIVO = @"C:\Users\Andrews\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
 
         private static readonly object objetoLock = new object();
 
-        private string[] ObterDados()
+        private List<string> ObterDados()
         {
-            return File.ReadAllLines(PATH_ARQUIVO, Encoding.UTF8);
+            return File.ReadAllLines(PATH_ARQUIVO, Encoding.UTF8).ToList();
         }
         public List<Pedido> ObterPedidos()
         {
-            var linhasArquivo = ObterDados().ToList();
+            var linhasArquivo = ObterDados();
 
             return ConverteLinhasEmPedidos(linhasArquivo);
         }
@@ -36,7 +36,7 @@ namespace LojaNinja.Repositorio
             {
                 var utlimoId = this.ObterPedidos().Max(x => x.Id);
                 var idGerado = utlimoId + 1;
-                var novaLinha = ConvertePedidoEmLinhaCSV(pedido, idGerado,false);
+                var novaLinha = ConvertePedidoEmLinhaCSV(pedido, idGerado,true);
 
                 File.AppendAllText(PATH_ARQUIVO, novaLinha);
 
@@ -83,7 +83,10 @@ namespace LojaNinja.Repositorio
 
         public void ExcluirPedido(int id)
         {
-            //TODO: Implementar
+            string idString = id.ToString();
+            var linhas = ObterDados().Where(linha => linha.Split(';')[0] != idString).ToList();
+            File.WriteAllText(PATH_ARQUIVO, string.Join("\n", linhas.ToArray()));
+
         }
 
         private List<Pedido> ConverteLinhasEmPedidos(List<string> linhasArquivo)
