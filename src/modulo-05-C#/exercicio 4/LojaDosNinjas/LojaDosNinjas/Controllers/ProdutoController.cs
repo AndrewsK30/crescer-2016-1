@@ -63,7 +63,7 @@ namespace LojaNinja.MVC.Controllers
                         repositorio.IncluirPedido(pedido);
                         ViewBag.Mensagem = "Salvo com sucesso";                        
                     }
-                    return View("Sucesso", model);
+                    return View("Sucesso");
                 }
                 catch (ArgumentException ex)
                 {
@@ -81,8 +81,17 @@ namespace LojaNinja.MVC.Controllers
         public ActionResult Listagem(string cliente, string produto)
         {
             var pedidos = repositorio.ObterPedidos();
-
+            if (!string.IsNullOrEmpty(cliente))
+                pedidos = pedidos.Where(x => x.NomeCliente.ToLower() == cliente.ToLower()).ToList();
+            if (!string.IsNullOrEmpty(produto))
+                pedidos = pedidos.Where(x => x.NomeProduto.ToLower() == produto.ToLower()).ToList();
             return View(pedidos);
+        }
+        public ActionResult Excluir(int id)
+        {
+            repositorio.ExcluirPedido(id);
+            ViewBag.Mensagem = "Excluido com sucesso";
+            return View("Sucesso");
         }
         public ActionResult Detalhes(int id)
         {
