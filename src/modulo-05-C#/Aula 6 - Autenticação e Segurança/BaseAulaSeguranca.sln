@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseAulaSeguranca", "BaseAulaSeguranca\BaseAulaSeguranca.csproj", "{2578DC59-3E2D-47C2-A47A-1557B2914AA5}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio", "Repositorio\Repositorio.csproj", "{365D144B-8128-44A4-8E70-9007CE5BCF0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominioTest", "DominioTest\DominioTest.csproj", "{A58E03F0-DDA5-439F-ACA1-0BE38ACB1033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.EF", "Repositorio.EF\Repositorio.EF.csproj", "{9697CC31-78A7-4411-887C-D60516374548}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A58E03F0-DDA5-439F-ACA1-0BE38ACB1033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A58E03F0-DDA5-439F-ACA1-0BE38ACB1033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A58E03F0-DDA5-439F-ACA1-0BE38ACB1033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9697CC31-78A7-4411-887C-D60516374548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9697CC31-78A7-4411-887C-D60516374548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9697CC31-78A7-4411-887C-D60516374548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9697CC31-78A7-4411-887C-D60516374548}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
