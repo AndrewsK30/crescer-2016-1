@@ -1,5 +1,8 @@
 ﻿using LojaNinja.Dominio;
+using LojaNinja.MVC.Filters;
 using LojaNinja.MVC.Models;
+using LojaNinja.MVC.Models.Login;
+using LojaNinja.MVC.Services;
 using LojaNinja.Repositorio;
 using System;
 using System.Collections.Generic;
@@ -7,16 +10,37 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace LojaNinja.MVC.Controllers
 {
     public class ProdutoController : Controller
     {
+
         private RepositorioVendas repositorio = new RepositorioVendas();
         // TODO: Refazer Index, E refazer design.
+        private UsuarioServico _usuarioServico;
+
+        public ProdutoController()
+        {
+
+            _usuarioServico = new UsuarioServico(
+                    new UsuarioRepositorio()
+                );
+        }
+
+        [HttpGet]
+        [LojaToken]
         public ActionResult Index()
         {
-            return View();
+            if (!ServicoDeSessao.EstaLogado)
+            {
+                return View();
+            }
+            return RedirectToAction("Listagem");
         }
+
+        [HttpGet]
+        [LojaToken(Roles = "COMUM,ADMIN")]
         public ActionResult CadastrarProduto(int? id)
         {
 
@@ -45,6 +69,8 @@ namespace LojaNinja.MVC.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SalvarProduto(ProdutoModel model)
         {
             if (ModelState.IsValid)
@@ -78,17 +104,62 @@ namespace LojaNinja.MVC.Controllers
             }
 
         }
+        // TODO: Fazer cadastro.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logar(LoginViewModel loginViewModel)
+        {
+            if(ModelState.IsValid)
+            {
+                
+                Usuario usuarioEncontrado =
+                    _usuarioServico.BuscarUsuarioPorAutenticacao(
+                            loginViewModel.Email, loginViewModel.Senha
+                        );
+
+                if (usuarioEncontrado != null)
+                {
+                    
+                    var usuarioLogadoModel = new UsuarioLogadoModel(usuarioEncontrado);
+
+                    
+                    ServicoDeSessao.CriarSessao(usuarioLogadoModel);
+                    return RedirectToAction("Listagem");
+                }
+                else
+                {
+                    ModelState.AddModelError("INVALID_USER", "Usuário ou senha inválido.");
+                }
+            }
+
+            return View("Index", loginViewModel);
+        }
+        // TODO: refazer design de login.
+        [HttpGet]       
+        public ActionResult Login()
+        {            
+            return View();
+        }
+
+        [HttpGet]
+        [LojaToken(Roles = "COMUM,ADMIN")]
         public ActionResult Listagem(string cliente, string produto)
         {
             var pedidos = repositorio.ObterPedidos(cliente, produto);
             return View(pedidos);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Excluir(int id)
         {
             repositorio.ExcluirPedido(id);
             ViewBag.Mensagem = "Excluido com sucesso";
             return View("Sucesso");
         }
+
+        [HttpGet]
+        [LojaToken(Roles = "COMUM,ADMIN")]
         public ActionResult Detalhes(int id)
         {
             var pedido = repositorio.ObterPedidoPorId(id);
