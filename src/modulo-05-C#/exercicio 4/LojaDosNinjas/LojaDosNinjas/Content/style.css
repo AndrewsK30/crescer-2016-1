@@ -1,35 +1,59 @@
-﻿@font-face {
-  font-family: 'japanese';
-  src:  url('Vnhltfap.ttf') format('ttf')
+﻿@import url('https://fonts.googleapis.com/css?family=Lato|Lato');
+body{
+    background: url('img/backgorund.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    font-family:Lato;
 }
-#body-index{
-    background:url(katana.jpg) no-repeat no-repeat left top fixed ;
-    height:40em;
-    background-size: 100% 50%;
+#conteudo-index{
+    margin-top:14em;
 }
-.logo{
-   
-    padding:2em 0;
-    margin:2em;
-    background-color:#1F1F21;
+.btn-primary {
+  color: #ffffff;
+  background-color: #988150;
+  border-color: #877347;
 }
-
-.logo img{
-    width:70px;
-    height:70px;
+.text-center {
+  text-align: center;
 }
-
-
-.logo-text {
-    margin:0.7em 0;
-    font-family:japanese;
-    color:red;
-    font-size:3em;
+.active a{
+    color:#988150;
+    text-decoration: none;
+}
+.active a:hover{
+    color:#77653e;
+    text-decoration: none;
+     background-color: #171717;
+}
+#brand-logo{
+ background-color:#988150;
+ height:100%;
+}
+#titulo-index{
+    font-size:3.7em;
+    color:white;
+}
+#sub-titulo-index{
+    font-size:1.3em;
+    color:white;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  color: #ffffff;
+  background-color: #77653e;
+  border-color: #5f5132;
 }
 .form-itens {
     padding: 50px;
 }
+.content{
 
+    padding-top:10%;
+
+}
 .inverted-hover {
     transition: background-color 1s ease-in-out, color 1s ease-in-out;
     
@@ -53,3 +77,4 @@
 .urgente{
     color:red;
 }
+
