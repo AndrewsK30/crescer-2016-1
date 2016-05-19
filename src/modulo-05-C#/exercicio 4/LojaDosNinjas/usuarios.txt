@@ -1,0 +1,2 @@
+id;Nome;Senha;Email;permissoes
+1;Andrews;679dbccc489be63d662fd65fc9d27f96;andrewskuhn@hotmail.com;"COMUM"
