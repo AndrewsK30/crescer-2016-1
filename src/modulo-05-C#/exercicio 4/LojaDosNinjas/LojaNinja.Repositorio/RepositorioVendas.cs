@@ -11,8 +11,8 @@ namespace LojaNinja.Repositorio
     public class RepositorioVendas
     {
         //TODO:Refactory nas classes.
-        //private string PATH_ARQUIVO = @"C:\Users\Andrews\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
-        private string PATH_ARQUIVO = @"C:\Users\andrews.silva\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
+        private string PATH_ARQUIVO = @"C:\Users\Andrews\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
+        //private string PATH_ARQUIVO = @"C:\Users\andrews.silva\Documents\crescer-2016-1\src\modulo-05-C#\exercicio 4\LojaDosNinjas\vendas.txt";
         private static readonly object objetoLock = new object();
 
         private List<string> ObterDados()

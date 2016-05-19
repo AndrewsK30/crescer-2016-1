@@ -121,8 +121,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\background.png" />
-    <Content Include="Content\katana.jpg" />
+    <Content Include="Content\img\backgorund.jpg" />
+    <Content Include="Content\img\logo.png" />
+    <None Include="Content\img\logoMedio" />
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -136,7 +137,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\Vnhltfap.ttf" />
+    <Content Include="Content\lastninja.ttf" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -159,11 +160,15 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Filters\LojaToken.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Login\LoginViewModel.cs" />
     <Compile Include="Models\ProdutoModel.cs" />
+    <Compile Include="Models\Login\UsuarioLogadoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ServicoDeSessao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -176,6 +181,7 @@
     <Content Include="Views\Produto\Detalhes.cshtml" />
     <Content Include="Views\Produto\Index.cshtml" />
     <None Include="Views\Produto\Listagem.cshtml" />
+    <Content Include="Views\Produto\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
