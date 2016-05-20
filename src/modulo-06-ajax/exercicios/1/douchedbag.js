@@ -2,7 +2,7 @@
 
 $("#form-procura-artista").submit(function (e) {
     var valorDado = $("#input-procura-artista").val();
-    if(valorDado.toLocaleLowerCase() === 'justin bieber' && Math.floor(Math.random() * 100) + 1<21){
+    if(valorDado.toLocaleLowerCase() === 'justin bieber' && Math.floor(Math.random() < 0.21){
         listaAlbunsPorId('douchebag');
     }else{
     $.ajax({
