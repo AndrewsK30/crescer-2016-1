@@ -1,2 +1,3 @@
 id;Nome;Senha;Email;permissoes
-1;Andrews;679dbccc489be63d662fd65fc9d27f96;andrewskuhn@hotmail.com;"COMUM"
+1;Andrews;bfe02f3cc59e9f8c44abcd5546a4d941;andrewskuhn@hotmail.com;COMUM,ADMIN
+2;Marcos;bfe02f3cc59e9f8c44abcd5546a4d941;Marcos@hotmail.com;COMUM

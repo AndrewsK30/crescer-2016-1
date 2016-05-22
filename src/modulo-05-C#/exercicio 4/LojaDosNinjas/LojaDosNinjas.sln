@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Db", "4-Db", "{33DB8919-B
 		..\..\..\..\..\..\..\crescer-2016-1-inst\src\modulo-05-dotnet\Aula 5\LojaNinja\vendas.txt = ..\..\..\..\..\..\..\crescer-2016-1-inst\src\modulo-05-dotnet\Aula 5\LojaNinja\vendas.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaNinja.Repositorio.ADO", "LojaNinja.Repositorio.ADO\LojaNinja.Repositorio.ADO.csproj", "{A054E5E1-531E-42C6-8175-52C041ACAEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaNinja.Repositorio.EF", "LojaNinja.Repositorio.EF\LojaNinja.Repositorio.EF.csproj", "{F154BA95-5C47-4835-AA6A-15513F9B2587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +48,14 @@ Global
 		{A2324F01-A79B-42E8-B88B-7FE0B266FB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2324F01-A79B-42E8-B88B-7FE0B266FB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2324F01-A79B-42E8-B88B-7FE0B266FB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A054E5E1-531E-42C6-8175-52C041ACAEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A054E5E1-531E-42C6-8175-52C041ACAEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A054E5E1-531E-42C6-8175-52C041ACAEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A054E5E1-531E-42C6-8175-52C041ACAEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F154BA95-5C47-4835-AA6A-15513F9B2587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F154BA95-5C47-4835-AA6A-15513F9B2587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F154BA95-5C47-4835-AA6A-15513F9B2587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F154BA95-5C47-4835-AA6A-15513F9B2587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +65,7 @@ Global
 		{7AC3C7AD-94B9-4CDE-9510-E62BA4AE0189} = {1E5F7CE3-DDE3-44A5-8EC1-F9A2A30CC32B}
 		{5FE1BB5B-B727-400C-B45A-472971050B27} = {1E5F7CE3-DDE3-44A5-8EC1-F9A2A30CC32B}
 		{A2324F01-A79B-42E8-B88B-7FE0B266FB7E} = {EA707689-A79D-496E-B5E0-C46A7ABD1BA8}
+		{A054E5E1-531E-42C6-8175-52C041ACAEFB} = {EA707689-A79D-496E-B5E0-C46A7ABD1BA8}
+		{F154BA95-5C47-4835-AA6A-15513F9B2587} = {EA707689-A79D-496E-B5E0-C46A7ABD1BA8}
 	EndGlobalSection
 EndGlobal
