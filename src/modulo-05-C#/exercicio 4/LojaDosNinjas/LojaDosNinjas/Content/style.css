@@ -1,5 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Lato|Lato');
-body{
+#index{
     background: url('img/backgorund.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
