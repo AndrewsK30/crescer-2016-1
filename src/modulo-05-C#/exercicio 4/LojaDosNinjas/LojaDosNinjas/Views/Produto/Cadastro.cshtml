@@ -1,0 +1,31 @@
+﻿@model LojaNinja.MVC.Models.UsuarioModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    @using (Html.BeginForm("Cadastrar", "Produto", FormMethod.Post, new { id = "form-cadastro" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            @Html.ValidationSummary(excludePropertyErrors: false)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nome) <br />
+            @Html.TextBoxFor(m => m.Nome)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email) <br />
+            @Html.TextBoxFor(m => m.Email)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Senha) <br />
+            @Html.PasswordFor(m => m.Senha)
+        </div>
+        <div class="form-group">
+            <button type="submit" value="Entrar" class="btn btn-default"> Cadastrar</button>
+        </div>
+    }
+</div>
