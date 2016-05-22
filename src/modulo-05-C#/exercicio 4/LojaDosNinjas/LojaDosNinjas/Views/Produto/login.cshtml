@@ -1,26 +1,27 @@
-﻿@model LojaNinja.Dominio.Usuario
+﻿@model LojaNinja.MVC.Models.Login.LoginViewModel
 
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-@using (Html.BeginForm("Logar", "Produto", FormMethod.Post, new { id = "form-cadastro-produto" }))
-{
-     @Html.AntiForgeryToken()
-    <div>
-        @Html.ValidationSummary(excludePropertyErrors: false)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email) <br />
-        @Html.TextBoxFor(m => m.Email)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Senha) <br />
-        @Html.PasswordFor(m => m.Senha)
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Entrar" />
-    </div>
-}
+<div class="col-lg-12">
+    @using (Html.BeginForm("Logar", "Produto", FormMethod.Post, new { id = "form-login", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            @Html.ValidationSummary(excludePropertyErrors: false)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email) <br />
+            @Html.TextBoxFor(m => m.Email)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Senha) <br />
+            @Html.PasswordFor(m => m.Senha)
+        </div>
+        <div class="form-group">
+            <button type="submit" value="Entrar" class="btn btn-default"> Entrar</button>
+        </div>
+    }
+</div>
