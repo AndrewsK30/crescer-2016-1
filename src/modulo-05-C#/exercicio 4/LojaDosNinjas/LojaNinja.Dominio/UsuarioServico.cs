@@ -17,6 +17,14 @@ namespace LojaNinja.Dominio
             _usuarioRepositorio = usuarioRepositorio;
         }
 
+        public bool regraDeSenhaOK(string senha)
+        {
+               return senha.Length > 7 &&
+                      senha.Any(x => char.IsUpper(x)) &&
+                      senha.Any(x => char.IsLower(x)) &&
+                      senha.Any(char.IsDigit);
+        }
+
         public Usuario BuscarUsuarioPorAutenticacao(string email, string senha)
         {
 
@@ -25,6 +33,19 @@ namespace LojaNinja.Dominio
             Usuario usuarioEncontrado = _usuarioRepositorio.BuscarUsuarioPorAutenticacao(email, senhaCriptografada);
 
             return usuarioEncontrado;
+        }
+
+        public void CadastrarUsuario(string email, string senha, string nome)
+        {
+
+            _usuarioRepositorio.CadastraNovoUsuario(new Usuario(0,email, Criptografar(senha), nome,new List<Permissao>(){new Permissao(1,"COMUM")}));
+
+
+        }
+
+        public List<Usuario> BuscarTodosUsuarios()
+        {
+            return _usuarioRepositorio.BuscarTodosUsuarios();
         }
 
         private string Criptografar(string texto)

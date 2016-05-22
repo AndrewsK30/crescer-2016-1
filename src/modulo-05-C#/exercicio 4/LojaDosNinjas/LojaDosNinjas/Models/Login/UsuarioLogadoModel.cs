@@ -17,7 +17,9 @@ namespace LojaNinja.MVC.Models.Login
         {
             this.Email = usuario.Email;
             this.Nome = usuario.Nome;
-            this.Permissoes = usuario.Permissoes;
+            this.Permissoes = this.Permissoes = usuario.Permissoes == null ?
+                                null :
+                                usuario.Permissoes.Select(p => p.Nome).ToArray();
         }
        
         public bool TemPermissao(string permissao)
