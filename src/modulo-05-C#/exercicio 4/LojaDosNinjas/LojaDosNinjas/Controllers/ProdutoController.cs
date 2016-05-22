@@ -4,6 +4,8 @@ using LojaNinja.MVC.Models;
 using LojaNinja.MVC.Models.Login;
 using LojaNinja.MVC.Services;
 using LojaNinja.Repositorio;
+using LojaNinja.Repositorio.ADO;
+using LojaNinja.Repositorio.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +19,14 @@ namespace LojaNinja.MVC.Controllers
     {
 
         private RepositorioVendas repositorio = new RepositorioVendas();
-        // TODO: Refazer Index, E refazer design.
+        
         private UsuarioServico _usuarioServico;
 
         public ProdutoController()
         {
 
             _usuarioServico = new UsuarioServico(
-                    new UsuarioRepositorio()
+                    new UsuarioRepositorioEF()
                 );
         }
 
@@ -40,7 +42,7 @@ namespace LojaNinja.MVC.Controllers
         }
 
         [HttpGet]
-        [LojaToken(Roles = "COMUM,ADMIN")]
+        [LojaToken(Roles = "COMUM")]
         public ActionResult CadastrarProduto(int? id)
         {
 
@@ -70,6 +72,7 @@ namespace LojaNinja.MVC.Controllers
         }
 
         [HttpPost]
+        [LojaToken(Roles = "COMUM")]
         [ValidateAntiForgeryToken]
         public ActionResult SalvarProduto(ProdutoModel model)
         {
@@ -104,7 +107,27 @@ namespace LojaNinja.MVC.Controllers
             }
 
         }
-        // TODO: Fazer cadastro.
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastrar(UsuarioModel usuarioModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_usuarioServico.regraDeSenhaOK(usuarioModel.Senha))
+                {
+                    _usuarioServico.CadastrarUsuario(usuarioModel.Email, usuarioModel.Senha, usuarioModel.Nome);
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("INVALID_USER", "Senha digitada deve conter 8 numeros no mínimo,1 letra maiuscula e minúscula e um número");
+                }
+            }
+
+            return View("Cadastro", usuarioModel);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Logar(LoginViewModel loginViewModel)
@@ -134,7 +157,7 @@ namespace LojaNinja.MVC.Controllers
 
             return View("Index", loginViewModel);
         }
-        // TODO: refazer design de login.
+        
         [HttpGet]       
         public ActionResult Login()
         {            
@@ -142,14 +165,31 @@ namespace LojaNinja.MVC.Controllers
         }
 
         [HttpGet]
-        [LojaToken(Roles = "COMUM,ADMIN")]
+        public ActionResult Cadastro()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        [LojaToken(Roles = "COMUM")]
         public ActionResult Listagem(string cliente, string produto)
         {
             var pedidos = repositorio.ObterPedidos(cliente, produto);
             return View(pedidos);
         }
 
+        [HttpGet]
+        [LojaToken(Roles = "ADMIN")]
+        public ActionResult ListagemUsuarios(string cliente, string produto)
+        {
+            //TODO:Crirar função com melhor descrição para busca de usuriaos
+            var usuarios = _usuarioServico.BuscarTodosUsuarios();
+            return View(usuarios);
+        }
+
         [HttpPost]
+        [LojaToken(Roles = "COMUM")]
         [ValidateAntiForgeryToken]
         public ActionResult Excluir(int id)
         {
@@ -159,7 +199,7 @@ namespace LojaNinja.MVC.Controllers
         }
 
         [HttpGet]
-        [LojaToken(Roles = "COMUM,ADMIN")]
+        [LojaToken(Roles = "COMUM")]
         public ActionResult Detalhes(int id)
         {
             var pedido = repositorio.ObterPedidoPorId(id);
