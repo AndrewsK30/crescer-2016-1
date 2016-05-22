@@ -12,27 +12,37 @@ namespace LojaNinja.MVC.Filters
 {
     public class LojaToken : AuthorizeAttribute
     {
-       
-        private string[] _permissoesRequeridas = null;
 
         public LojaToken()
         {
-         
-            _permissoesRequeridas = String.IsNullOrWhiteSpace(this.Roles) ?
-                                        null :
-                                        this.Roles.Split(',');
+
         }
 
-       
+        private string[] _permissoesRequeridas = null;
+        private string[] PermissoesRequeridas
+        {
+            get
+            {
+                if (_permissoesRequeridas == null)
+                {
+                    _permissoesRequeridas = String.IsNullOrWhiteSpace(this.Roles) ?
+                                        new string[0] :
+                                        this.Roles.Split(',');
+                }
+
+                return _permissoesRequeridas;
+            }
+        }
+
         private bool TemAutorizacao
         {
             get
             {
                 UsuarioLogadoModel usuarioLogado = ServicoDeSessao.UsuarioLogado;
 
-                if (this._permissoesRequeridas != null)
+                if (this.PermissoesRequeridas.Length > 0)
                 {
-                    foreach (string permissao in _permissoesRequeridas)
+                    foreach (string permissao in PermissoesRequeridas)
                     {
                         if (usuarioLogado.TemPermissao(permissao))
                         {
@@ -65,8 +75,8 @@ namespace LojaNinja.MVC.Filters
                 filterContext.Result = new RedirectToRouteResult(
                                     new RouteValueDictionary
                                     {
-                                    { "action", "Index" },
-                                    { "controller", "Login" }
+                                    { "action", "Login" },
+                                    { "controller", "Produto" }
                                     });
             }
 
