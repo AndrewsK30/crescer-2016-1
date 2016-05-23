@@ -22,7 +22,21 @@ namespace CdZ.MVC.Models.Cavaleiro
             set { DataNascimento = value.FromDateTimeToISOString(); }
         }
         public Signo Signo { get; set; }
-        public TipoSanguineo TipoSanguineo { get; set; }
+        public string StringSigno
+        {
+            get
+            {
+                return Signo.ToString();
+            }
+        }
+        public TipoSanguineo TipoSanguineo { get; set; }        
+        public string StringTipoSanguineo
+        {
+            get
+            {
+                return TipoSanguineo.ToString();
+            }
+        }
         public LocalViewModel LocalNascimento { get; set; }
         public LocalViewModel LocalTreinamento { get; set; }
         public IList<GolpeViewModel> Golpes { get; set; }
@@ -36,6 +50,6 @@ namespace CdZ.MVC.Models.Cavaleiro
             var imagensObj = Imagens.Select(_ => _.ToModel()).ToList();
 
             return new Dominio.Cavaleiro(Nome, AlturaCm, PesoLb, DataNascimentoObj, Signo, TipoSanguineo, LocalNascimento.ToModel(), LocalTreinamento.ToModel(), golpesObj, imagensObj, Id);
-        }
+        }       
     }
 }
