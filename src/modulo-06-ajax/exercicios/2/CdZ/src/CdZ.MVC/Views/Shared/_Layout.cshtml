@@ -1,0 +1,63 @@
+﻿@using CdZ.MVC.Services
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">   
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div id="spinner" style="display: none;" class="spinner"></div>
+    @if (ServicoDeSessao.EstaLogado)
+    {
+        <header>
+            <div class="container-fluid">
+                <div class="pull-right">
+                    Bem Vinda(o) <b>@ServicoDeSessao.UsuarioLogado.Nome</b> (<a href="/Login/Loggout">Sair</a>)
+                </div>
+            </div>
+        </header>
+    }
+
+    <h1 class="site-title">Dakishimeta kokoro no kosumo</h1>
+    <div class="container"> 
+        @RenderBody()
+    </div>
+    <script>
+        var AnimacaoAmpola = true;
+        $(document)
+            .ajaxSend(function () {
+                if(AnimacaoAmpola)
+                $('#spinner').show();
+            })
+            .ajaxComplete(function () {
+                if (AnimacaoAmpola) {
+                    AnimacaoAmpola = false;
+                    $('#spinner').hide();
+                }
+                
+            })
+            .ajaxError(function () {
+                console.log('Tratador de erros genérico.', arguments);
+            });
+
+        $.ajaxSetup({
+            //timeout: 2000
+        });
+
+    </script>
+    <script src="~/Scripts/Components/FeedbackToast.js"></script>
+    @RenderSection("scripts", false)   
+</body>
+</html>
