@@ -20,4 +20,8 @@ $('#btn-adicionar-golpe').click(function () {
     ViewCavaleiros.adicionarGolpesView();
 });
 
+$('#frmNovoCavaleiro').submit(function (e) {
+    ViewCavaleiros.salvarCavaleiroNoServidor(e);
+});
+
 
