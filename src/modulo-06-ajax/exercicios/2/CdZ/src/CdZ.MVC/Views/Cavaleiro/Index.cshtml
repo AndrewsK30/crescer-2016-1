@@ -1,0 +1,136 @@
+﻿<marquee>Preencha os campos abaixo para cadastrar um novo cavaleiro de Atena!</marquee>
+<div id="toastErro" class="feedback-toast span12" style="display: none;">
+    <div class="alert alert-error">
+        <a class="close">x</a>
+        <strong class="title">Ops!</strong>
+        <span class="msg"></span>
+    </div>
+</div>
+<div id="toastSucesso" class="feedback-toast span12" style="display: none;">
+    <div class="alert alert-success">
+        <a class="close">x</a>
+        <strong class="title">Shimbalaiê!</strong>
+        <span class="msg"></span>
+    </div>
+</div>
+<form role="form" id="frmNovoCavaleiro" method="POST">
+    <div class="form-group">
+        <label for="txtNomeCavaleiro">Nome:</label>
+        <input type="text" class="form-control" id="txtNomeCavaleiro" placeholder="Ex: Saori" name="Nome" required>
+    </div>
+    <div class="form-group">
+        <label for="pwd">Tipo sanguineo:</label>
+        <select class="form-control" id="slTipoSanguineo" name="TipoSanguineo" required>
+            <option selected disabled value="">Selecione</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
+            <option value="3">AB</option>
+            <option value="4">O</option>
+        </select>
+    </div>
+    <div class="form-group" id="form-imgs">
+        <label for="txtImagemCavaleiro">Url da img:</label>
+
+    </div>
+    <div class="form-group" id="golpes">
+        <button type="button" class="btn btn-secondary" id="btn-adicionar-img">Adicionar img</button>
+    </div>
+    <div class="form-group">
+        <label for="slSigno">Signo:</label>
+        <select class="form-control" id="slSigno" name="Signo" required>
+            <option selected disabled value="">Selecione</option>
+            <option value="8">Escorpião</option>
+            <option value="12">Peixes</option>
+            <option value="11">Aquário</option>
+            <option value="10">Capricórnio</option>
+            <option value="9">Sagitário</option>
+            <option value="1">Áries</option>
+            <option value="2">Touro</option>
+            <option value="7">libra</option>
+            <option value="6">Virgem</option>
+            <option value="3">Gêmeos</option>
+            <option value="4">Câncer</option>
+            <option value="5">Leão</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="txtLocalNasc">Local de nascimento:</label>
+        <input type="text"  class="form-control" id="txtLocalNascimento" placeholder="Ex: Jamiel" name="LocalNascimento" required>
+    </div>
+    <div class="form-group">
+        <label for="txtLocaTreinamento">Local de treinamento:</label>
+        <input type="text" class="form-control" id="txtLocaTreinamento" placeholder="Ex: Tibete" name="LocalTreinamento" required>
+    </div>
+    <div class="form-group">
+        <label for="txtAltura">Altura em m:</label>
+        <input type="text"  class="form-control" id="txtAltura" placeholder="Ex: 1.80" name="AlturaCm" required>
+    </div>
+    <div class="form-group">
+        <label for="txtPeso">Peso em Lb:</label>
+        <input type="text" class="form-control" id="txtPeso" placeholder="Ex: 85" name="PesoLb" required>
+    </div>
+    <div class="form-group">
+        <label for="txtNascimento">Data de nascimeto:</label>
+        <input type="text" class="form-control" id="txtNascimento" placeholder="Ex: dd/mm/aaaa" name="DataNascimento" required>
+    </div>
+    <div class="form-group" id="form-golpes">
+        <label for="txtImagemCavaleiro">Golpes:</label>
+
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-secondary btnGolpe" id="btn-adicionar-golpe">Adicionar golpe</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="btn-submit-form">Submit</button>
+</form>
+<hr>
+<button id="btnCriar">Criar fake!</button>
+<div id="detalhes-cavaleiro"></div>
+
+<table class="table table-bordered table-striped" id="cavaleiros">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Imagem
+        </th>       
+        <th></th>
+    </tr>
+</table>
+    <button class="anterior btn btn-primary">Anterior</button>
+    <button class="proximo btn btn-primary">Proximo</button>
+
+    <script>
+        var urlCavaleiroPost = '@Url.Action("Post")';
+    </script>
+
+    @section scripts {        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="~/Scripts/Models/Cavaleiros.js"></script>
+        <script src="~/Scripts/Views/CavaleiroIndexView.js"></script>
+        <script>
+            var ViewCavaleiros = new CavaleiroIndexView({
+                errorToast: new FeedbackToast({
+                    element: $('#toastErro')
+                }),
+                successToast: new FeedbackToast({
+                    element: $('#toastSucesso')
+                }),
+                cavaleirosUi: $('#cavaleiros'),
+                urlCavaleiroGet: '@Url.Action("Get")',
+                urlCavaleiroGetById: '@Url.Action("GetById")',
+                urlCavaleiroPost: '@Url.Action("Post")',
+                urlCavaleiroDelete: '@Url.Action("Delete")',
+                urlCavaleiroPut: '@Url.Action("Put")',
+                cavaleroBotaoForm: $('#btn-submit-form'),
+                inputsImagens: $('#form-imgs'),
+                inputsGolpes: $('#form-golpes'),
+                formCadastro: $('#frmNovoCavaleiro')
+            });
+        </script>
+
+        <script src="~/Scripts/Views/main.js"></script>
+    }
