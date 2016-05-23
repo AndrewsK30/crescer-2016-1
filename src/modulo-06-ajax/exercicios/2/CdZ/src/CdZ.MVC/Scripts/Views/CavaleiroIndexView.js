@@ -74,7 +74,6 @@ var self = this;
             self.errorToast.show(res.status + ' - ' + res.statusText);
         }
     );
-
 }
 
 CavaleiroIndexView.prototype.notificacaoUpdateView = function () {
@@ -121,8 +120,8 @@ CavaleiroIndexView.prototype.criarHtmlCavaleiro = function (cava) {
         $('<p>').text('AlturaCm: '+cava.AlturaCm),
         $('<p>').text('PesoLb: ' + cava.PesoLb),
         $('<p>').text('Data de Nascimento: ' + data.getDate() + '/' + data.getMonth() + '/' + data.getFullYear()),
-        $('<p>').text('Signo: ' + cava.Signo),
-        $('<p>').text('Tipo sanguineo: ' + cava.TipoSanguineo),
+        $('<p>').text('Signo: ' + cava.StringSigno),
+        $('<p>').text('Tipo sanguineo: ' + cava.StringTipoSanguineo),
         $('<p>').text('Local de nascimento: ' + cava.LocalNascimento.Texto),
         $('<p>').text('Local de treinamento: ' + cava.LocalTreinamento.Texto)
         );
@@ -155,9 +154,11 @@ CavaleiroIndexView.prototype.criarHtmlCavaleiro = function (cava) {
         ));
 };
 
-CavaleiroIndexView.prototype.adicionarImageView = function (valor,isThumb) {
+CavaleiroIndexView.prototype.adicionarImageView = function (valor,isThumb,IdValue) {
     var inputValor = valor || '';
     var checkBox = isThumb || false;
+    var imagemId = IdValue || '0';
+
     this.inputsImagens
             .append(
                     $('<p>').append(
@@ -174,7 +175,9 @@ CavaleiroIndexView.prototype.adicionarImageView = function (valor,isThumb) {
             ).append(
                 $('<input>')
                 .addClass('input-adicionar-imagens form-control')
-                .attr('type', 'text').val(inputValor)
+                .attr('type', 'text')
+                .val(inputValor)
+                .attr("data-id-imagem", imagemId)
             ).append(
                 $('<label>').text('É thumbnail?')
                 .append(
@@ -186,8 +189,9 @@ CavaleiroIndexView.prototype.adicionarImageView = function (valor,isThumb) {
             );
 }
 
-CavaleiroIndexView.prototype.adicionarGolpesView = function (valor) {
+CavaleiroIndexView.prototype.adicionarGolpesView = function (valor,idGolpe) {
     var inputValor = valor || '';
+    var idDoGolpe = idGolpe || '0';
     this.inputsGolpes.append(
         $('<p>').append(
             $('<button>')
@@ -202,7 +206,9 @@ CavaleiroIndexView.prototype.adicionarGolpesView = function (valor) {
     ).append(
         $('<input>')
         .addClass('input-adicionar-golpes form-control')
-        .attr('type', 'text').val(inputValor)
+        .attr('type', 'text')
+        .val(inputValor).attr("data-id-golpe", idDoGolpe)
+        
     );
 }
 
@@ -220,8 +226,8 @@ CavaleiroIndexView.prototype.excluirCavaleiroNoServidor = function (e) {
 
 CavaleiroIndexView.prototype.trocarDeContextoForm = function (configs) {
     this.formCadastro.unbind("submit").submit(configs, this.salvarCavaleiroNoServidor);
-
 };
+
 CavaleiroIndexView.prototype.editarCavaleiroNoServidor = function(e) {
     var cavaleiroId = e.data.id;
     var self = e.data.self;   
@@ -229,7 +235,7 @@ CavaleiroIndexView.prototype.editarCavaleiroNoServidor = function(e) {
     self.cavaleiros.buscar(cavaleiroId)
         .done(function (detalhe) {
             //TODO: desengessar
-            var configs = { tipoDeSubmit: 'atualizar', id: detalhe.data.id };
+            var configs = { tipoDeSubmit: 'atualizar', id: detalhe.data.id};
             botaoSubmit.text('Atualizar');
            $('#txtNomeCavaleiro').val(detalhe.data.Nome);
            $('#slTipoSanguineo').val(detalhe.data.TipoSanguineo).change();
@@ -242,20 +248,21 @@ CavaleiroIndexView.prototype.editarCavaleiroNoServidor = function(e) {
            $('#slSigno').val(detalhe.data.Signo).change();
           
            $.each(detalhe.data.Golpes, function () {
-               self.adicionarGolpesView(this.Nome);
-               configs.golpes.push({Id:this.Id,Nome:this.Nome});
+               self.adicionarGolpesView(this.Nome,this.Id);
            });
-            $.each(detalhe.data.Imagens,function () {
-                self.adicionarImageView(this.Url, this.IsThumb);
-                configs.golpes.push({ Id: this.Id, Url: this.Url, IsThumb: this.Nome });
-            });
+
+           $.each(detalhe.data.Imagens,function () {
+               self.adicionarImageView(this.Url, this.IsThumb, this.Id);
+           });
+
             //TODO:Terminar atulizar, e com isso Trocar de contexto.
             self.trocarDeContextoForm(configs);
         });
 };
 
 CavaleiroIndexView.prototype.salvarCavaleiroNoServidor = function (e) {
-    
+    var dados = (typeof e === 'undefined') ? null :
+                e.data;
     var nome = $('#txtNomeCavaleiro').val()
          , tipoSanquineo = $('#slTipoSanguineo').val()
          , peso = $('#txtPeso').val()
@@ -293,8 +300,13 @@ CavaleiroIndexView.prototype.salvarCavaleiroNoServidor = function (e) {
             , Golpes: golpes
             , imagens: imagens
     };
+    if (dados != null && e.data.tipoDeSubmit === 'atualizar') {
+        mandar.Id = e.data.Id;
+    } else {
+        ViewCavaleiros.cavaleiros.inserir(mandar);
+    }
 
-    ViewCavaleiros.cavaleiros.inserir(mandar);
+   
     return e.preventDefault();
 }
 
