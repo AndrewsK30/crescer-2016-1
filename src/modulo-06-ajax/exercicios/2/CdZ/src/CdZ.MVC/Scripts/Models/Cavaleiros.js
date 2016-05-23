@@ -9,8 +9,8 @@ function Cavaleiros(options) {
     this.urlPut = options.urlPut || '/Cavaleiro/Put';
 };
 
-Cavaleiros.prototype.paginado = function (pagina) {    
-    return $.get(this.urlGet+'?pagina=' + pagina);
+Cavaleiros.prototype.paginado = function (pagina) {
+    return $.get(this.urlGet + '?pagina=' + pagina);
 };
 
 Cavaleiros.prototype.buscar = function (idCavaleiro) {
