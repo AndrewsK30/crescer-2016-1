@@ -17,7 +17,7 @@ public class ExercicioOitoTres {
     try (final Scanner scanner = new Scanner(System.in)) {
             System.out.println("Hello World! - " + scanner.nextLine());
         } catch (Exception e) {
-            println("erro");
+           System.out.println("erro");
         }
     
     }   
