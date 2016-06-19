@@ -1,34 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.br.crescer.controllers;
-import java.util.Date;
-import java.util.List;
+
+import com.br.crescer.entity.Pessoa;
+import com.br.crescer.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author andrews.silva
+ * @author Andrews
  */
 @RestController
+@RequestMapping("/rest/pessoa")
 public class PessoaRest {
-    
+
     @Autowired
     PessoaService service;
-    
-    @RequestMapping(value = "/current_date_timeJ")
-    public Date date() {
-        return new Date();
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Pessoa> list() {
+        return service.findAll();
     }
 
-    @ResponseBody
-    @RequestMapping("/pessoa")
-    public List<Pessoa> list() {
-        return service.list();
+    @RequestMapping(method = RequestMethod.POST)
+    public Pessoa save(@RequestBody Pessoa p) {
+        return service.save(p);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void delete(@RequestBody Pessoa p) {
+        service.delete(p.getId());
     }
 }
